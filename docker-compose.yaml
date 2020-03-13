@@ -1,0 +1,13 @@
+version: "3.4"
+services:
+  memelord:
+    build:
+      context: .
+      target: start-watch
+    restart: on-failure
+    command: ['npm', 'run', 'start:watch']
+    volumes:
+      - ${PWD}/src/:/app/src/
+      - ${PWD}/images/:/app/images/
+    environment:
+      CLIENT_TOKEN: ${CLIENT_TOKEN}
