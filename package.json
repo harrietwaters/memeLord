@@ -6,6 +6,7 @@
   "scripts": {
     "docker-compose:up": "docker-compose up --build",
     "start:watch": "nodemon -r ts-node/register src/app.ts",
+    "lint": "eslint --fix --ext .js,.ts ./src",
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc"
   },
@@ -13,10 +14,20 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^13.9.0",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "eslint": "^6.8.0",
+    "eslint-config-standard-with-typescript": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^9.2.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "ts-node": "^8.6.2",
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "@types/bluebird": "^3.5.30",
+    "@types/validator": "^12.0.1",
     "canvas": "^2.6.1",
     "discord.js": "^12.0.2",
     "nodemon": "^2.0.2",

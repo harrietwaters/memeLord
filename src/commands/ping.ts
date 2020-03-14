@@ -1,14 +1,14 @@
-import * as Discord from "discord.js";
+import * as Discord from 'discord.js'
 
 const ping = {
-    name: 'ping',
-    description: 'Ping!',
-    trigger: (message: Discord.Message): Boolean => {
-        return message.content.toLowerCase().startsWith('ping');
-    },
-    execute: (message: Discord.Message, args) => {
-        message.channel.send('boioioing');
-    }
+  name: 'ping',
+  description: 'Ping!',
+  trigger: (message: Discord.Message): boolean => {
+    return message.content.toLowerCase().startsWith('ping')
+  },
+  execute: async (message: Discord.Message, args): Promise<void> => {
+    await message.channel.send('boioioing')
+  }
 }
 
-module.exports = ping;
+module.exports = ping
