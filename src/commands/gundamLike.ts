@@ -1,7 +1,7 @@
 import * as Discord from "discord.js";
 import { Command } from "../interfaces";
 
-export const gundamLike: Command = {
+const gundamLike: Command = {
     name: 'Gundam Like',
     description: 'Like any post with \'gundam\' in it',
     trigger: (message: Discord.Message): Boolean => {
@@ -12,3 +12,5 @@ export const gundamLike: Command = {
         await message.react('👍')
     }
 }
+
+module.exports = gundamLike;

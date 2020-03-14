@@ -1,6 +1,6 @@
 import * as Discord from "discord.js";
 
-export const smolDog = {
+const smolDog = {
     name: 'smolDog',
     description: 'SMOL DOG!',
     trigger: (message: Discord.Message): Boolean => {
@@ -11,3 +11,5 @@ export const smolDog = {
         message.channel.send('SMOL DOG');
     }
 }
+
+module.exports = smolDog;

@@ -2,7 +2,7 @@ import * as Discord from "discord.js";
 import { Command } from "../interfaces";
 import { getNouns } from "../parseMsg";
 
-export const buttBot: Command = {
+const buttBot: Command = {
     name: 'Butt Bot',
     description: 'Finds a noun and swaps it with butt',
     trigger: async (message: Discord.Message, args: {client: Discord.Client}): Promise<Boolean> => {
@@ -10,7 +10,7 @@ export const buttBot: Command = {
         if (message.author.id === args!.client!.user!.id) return false
 
         // Do it 10% of the time
-        if (Math.floor(Math.random() * 10) > 1) return false;
+        if (Math.floor(Math.random() * 50) > 0) return false;
 
         // Extract nouns
         const pos = await getNouns(message.content);
@@ -35,3 +35,5 @@ export const buttBot: Command = {
         message.channel.send(`<@${message.author.id}> ${buttMessage}`);
     }
 }
+
+module.exports = buttBot;

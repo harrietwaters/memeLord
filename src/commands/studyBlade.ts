@@ -7,8 +7,7 @@ export const studyBlade: Command = {
     name: 'Study Blade',
     description: 'While you were having premarital sex I wrote this command and now you have the audacity to come to me for a description?',
     trigger: async (message: Discord.Message): Promise<Boolean> => {
-        // Do it 10% of the time
-        if (Math.floor(Math.random() * 20) > 1) return false;
+        if (Math.floor(Math.random() * 100) > 0) return false;
 
         // Extract nouns
         const pos = await getNouns(message.content);
@@ -47,3 +46,5 @@ export const studyBlade: Command = {
         message.channel.send(`<@${message.author.id}>`, attachment)
     }
 }
+
+module.exports = studyBlade;

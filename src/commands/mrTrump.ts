@@ -1,7 +1,7 @@
 import * as Discord from "discord.js";
 import { Command } from "../interfaces";
 
-export const mrTrump: Command = {
+const mrTrump: Command = {
     name: 'Mr. Trump',
     description: 'Bless You Mr. Trump',
     trigger: (message: Discord.Message): Boolean => {
@@ -12,3 +12,5 @@ export const mrTrump: Command = {
         await message.react('🇺🇸')
     }
 }
+
+module.exports = mrTrump;

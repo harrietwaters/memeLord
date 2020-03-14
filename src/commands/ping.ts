@@ -1,6 +1,6 @@
 import * as Discord from "discord.js";
 
-export const ping = {
+const ping = {
     name: 'ping',
     description: 'Ping!',
     trigger: (message: Discord.Message): Boolean => {
@@ -10,3 +10,5 @@ export const ping = {
         message.channel.send('boioioing');
     }
 }
+
+module.exports = ping;

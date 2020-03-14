@@ -1,7 +1,7 @@
 import * as Discord from "discord.js";
 import { Command } from "../interfaces";
 
-export const dontAtMe: Command = {
+const dontAtMe: Command = {
     name: 'dontAtMe',
     description: 'Calls out those who do not wish to be atted',
     trigger: (message: Discord.Message): Boolean => {
@@ -18,3 +18,5 @@ export const dontAtMe: Command = {
         message.channel.send(`<@${message.author.id}> ur a little bitch`)
     }
 }
+
+module.exports = dontAtMe;
