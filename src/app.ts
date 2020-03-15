@@ -5,62 +5,44 @@ import { Command } from './interfaces'
 import { ShitPosts } from './models/shitPosts'
 import { sequelize } from './lib/db'
 import { hashAttachment } from './lib/hashAttatchment'
-import { Op } from 'sequelize'
+import { findMemeCriminal } from './lib/findMemeCriminal'
 
 const client = new Discord.Client()
 const commands = new Discord.Collection<string, Command>()
 
 client.on('ready', async (): Promise<void> => {
-  const commandFiles: string[] = fs.readdirSync('src/commands/').filter(file => file.endsWith('.ts'))
+  const commandFiles: string[] = fs.readdirSync(`${__dirname}/commands/`).filter(file => file.endsWith('.ts') || file.endsWith('.js'))
 
   for (const file of commandFiles) {
-    const commandFile: Command = await import(`./commands/${file}`)
+    const commandFile: Command = await import(`${__dirname}/commands/${file}`)
     commands.set(commandFile.name, commandFile)
   }
 
   await sequelize.sync()
-  console.log('I am ready!')
+  console.log('I am ready for memes!')
 })
 
-// N.B.
-// Events handlers are run in the order you add them, FYI, so order here is important!!!!
-
-// Save shit posts here
+// Find MEME CRIMES and save shit posts
 client.on('message', async (message: Discord.Message) => {
   if (isMemeLord(message)) return
+
+  const memeCrime = await findMemeCriminal(message)
+
+  if (memeCrime != null) {
+    const embed = new Discord.MessageEmbed()
+      .setColor('#ff001e')
+      .setTitle('A MEME CRIME HAS BEEN COMITTED')
+      .setDescription(`<@${message.author.id}> HAS COMMITTED A GRAVE SIN`)
+      .addField('THE AGGRIVED PARTY', `<@${memeCrime?.user}>`, true)
+      .setImage(memeCrime.imageUrl)
+
+    await message.channel.send(embed)
+  }
+
   for (const [, attachment] of message.attachments) {
     const imageHash = await hashAttachment(attachment.attachment)
     await ShitPosts.create({ user: message.author.id, messageContent: message.content, imageHash })
   }
-})
-
-// Find MEME CRIMES here
-client.on('message', async (message: Discord.Message) => {
-  if (isMemeLord(message)) return
-  const hashMap = {}
-  for (const [, attachment] of message.attachments) {
-    hashMap[(await hashAttachment(attachment.attachment))] = attachment.attachment
-  }
-
-  const memeCrime = await ShitPosts.findOne({
-    where: {
-      imageHash: {
-        [Op.in]: Object.keys(hashMap)
-      }
-    }
-  })
-
-  if (memeCrime == null) return
-  const userId = memeCrime.get('user')
-
-  const embed = new Discord.MessageEmbed()
-    .setColor('#ff001e')
-    .setTitle('A MEME CRIME HAS BEEN COMITTED')
-    .setDescription(`<@${message.author.id}> HAS COMMITTED A GRAVE SIN`)
-    .addField('THE AGGRIVED PARTY', `<@${userId}>`, true)
-    .setImage(hashMap[memeCrime.get('imageHash')])
-
-  await message.channel.send(embed)
 })
 
 // Command handler

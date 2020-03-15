@@ -2,12 +2,13 @@ import * as Discord from 'discord.js'
 import * as Canvas from 'canvas'
 import { Command } from '../interfaces'
 import { getNouns } from '../parseMsg'
+import { odds } from '../lib/util'
 
 export const studyBlade: Command = {
   name: 'Study Blade',
   description: 'While you were having premarital sex I wrote this command and now you have the audacity to come to me for a description?',
   trigger: async (message: Discord.Message): Promise<boolean> => {
-    if (Math.floor(Math.random() * 100) > 0) return false
+    if (odds(1, 100)) return false
 
     // Extract nouns
     const pos = await getNouns(message.content)

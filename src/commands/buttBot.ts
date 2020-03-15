@@ -1,13 +1,13 @@
 import * as Discord from 'discord.js'
 import { Command } from '../interfaces'
 import { getNouns } from '../parseMsg'
+import { odds } from '../lib/util'
 
 const buttBot: Command = {
   name: 'Butt Bot',
   description: 'Finds a noun and swaps it with butt',
   trigger: async (message: Discord.Message, args: {client: Discord.Client}): Promise<boolean> => {
-    // Do it 10% of the time
-    if (Math.floor(Math.random() * 50) > 0) return false
+    if (odds(1, 50)) return false
 
     // Extract nouns
     const pos = await getNouns(message.content)
