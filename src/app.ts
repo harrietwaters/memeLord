@@ -7,13 +7,12 @@ import { sequelize } from './lib/db'
 import { hashAttachment } from './lib/hashAttatchment'
 import { Op } from 'sequelize'
 
-// Create an instance of a Discord client
 const client = new Discord.Client()
 const commands = new Discord.Collection<string, Command>()
 
-const commandFiles: string[] = fs.readdirSync('src/commands/').filter(file => file.endsWith('.ts'))
-
 client.on('ready', async (): Promise<void> => {
+  const commandFiles: string[] = fs.readdirSync('src/commands/').filter(file => file.endsWith('.ts'))
+
   for (const file of commandFiles) {
     const commandFile: Command = await import(`./commands/${file}`)
     commands.set(commandFile.name, commandFile)
@@ -57,7 +56,6 @@ client.on('message', async (message: Discord.Message) => {
   const embed = new Discord.MessageEmbed()
     .setColor('#ff001e')
     .setTitle('A MEME CRIME HAS BEEN COMITTED')
-    .setAuthor('MEME POLICE')
     .setDescription(`<@${message.author.id}> HAS COMMITTED A GRAVE SIN`)
     .addField('THE AGGRIVED PARTY', `<@${userId}>`, true)
     .setImage(hashMap[memeCrime.get('imageHash')])
