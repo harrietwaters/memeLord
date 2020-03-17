@@ -8,14 +8,14 @@ import { hashAttachment } from './lib/hashAttatchment'
 import { findMemeCriminal } from './lib/findMemeCriminal'
 
 const client = new Discord.Client()
-const commands = new Discord.Collection<string, Command>()
+const commands: Command[] = [];
 
 client.on('ready', async (): Promise<void> => {
   const commandFiles: string[] = fs.readdirSync(`${__dirname}/commands/`).filter(file => file.endsWith('.ts') || file.endsWith('.js'))
 
   for (const file of commandFiles) {
     const commandFile: Command = await import(`${__dirname}/commands/${file}`)
-    commands.set(commandFile.name, commandFile)
+    commands.push(commandFile)
   }
 
   await sequelize.sync()
@@ -48,11 +48,13 @@ client.on('message', async (message: Discord.Message) => {
 // Command handler
 client.on('message', async (message: Discord.Message) => {
   if (isMemeLord(message)) return
-  for (const command of commands.values()) {
+  const shuffledCommands = shuffle(commands)
+  for (const command of shuffledCommands) {
     const shouldTrigger: boolean = await command.trigger(message, { client })
     if (shouldTrigger) {
       console.log(`acting on command '${command.name}' for message \`${message.content}\``)
       await command.execute(message, { client })
+      return
     }
   }
 })
@@ -62,4 +64,17 @@ client.login(process.env.CLIENT_TOKEN)
 
 function isMemeLord (message: Discord.Message): boolean {
   return client.users.cache.get(message.author.id)?.username === 'MemeLord'
+}
+
+function shuffle (commands: Command[]): Command[] {
+  const shuffledCommands: Command[] = commands
+  for (let i = 0; i < shuffledCommands.length; i += 1) {
+    const shuffleIndex = Math.floor(Math.random() * shuffledCommands.length)
+    const temp = shuffledCommands[shuffleIndex]
+
+    shuffledCommands[shuffleIndex] = shuffledCommands[i]
+    shuffledCommands[i] = temp
+  }
+
+  return shuffledCommands
 }
