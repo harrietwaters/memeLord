@@ -1,7 +1,6 @@
 import * as Discord from 'discord.js'
-import { Command } from '../interfaces'
 
-const gundamLike: Command = {
+const gundamLike: Discord.Command = {
   name: 'Gundam Like',
   description: 'Like any post with \'gundam\' in it',
   trigger: (message: Discord.Message): boolean => {

@@ -14,13 +14,13 @@ FROM base as start-watch
 
 WORKDIR /app
 COPY . .
-RUN npm install --build-from-sourcex
+RUN npm install --build-from-source
 RUN npm run compile
 
 # Release
 FROM base as release
 WORKDIR /app
 COPY . .
-RUN npm install --prod
+RUN npm install --prod --build-from-source
 RUN npm run compile
 CMD ["node", "./dist/app.js"]

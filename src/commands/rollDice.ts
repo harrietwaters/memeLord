@@ -1,13 +1,13 @@
 import * as Discord from 'discord.js'
 
-const rollDice = {
+const rollDice: Discord.Command = {
   name: 'Roll Dice',
   description: 'Rolls dice',
   trigger: (message: Discord.Message): boolean => {
     const lowerMsg = message.content.toLowerCase()
     return lowerMsg.startsWith('!roll')
   },
-  execute: async (message: Discord.Message, args) => {
+  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
     const lowerMsg: string = message.content.toLowerCase()
     const diceArgs: string[] = lowerMsg.split(/ +/).slice(1)
 

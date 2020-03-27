@@ -1,7 +1,6 @@
 import * as Discord from 'discord.js'
-import { Command } from '../interfaces'
 
-const dontAtMe: Command = {
+const dontAtMe: Discord.Command = {
   name: 'dontAtMe',
   description: 'Calls out those who do not wish to be atted',
   trigger: (message: Discord.Message): boolean => {
@@ -14,8 +13,8 @@ const dontAtMe: Command = {
 
     return false
   },
-  execute: async (message: Discord.Message, args): Promise<void> => {
-    await message.channel.send(`<@${message.author.id}> ur a little bitch`)
+  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
+    return message.channel.send(`<@${message.author.id}> ur a little bitch`)
   }
 }
 

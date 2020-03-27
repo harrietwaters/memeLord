@@ -1,17 +1,16 @@
 import * as Discord from 'discord.js'
-import { Command } from '../interfaces'
 import { odds } from '../lib/util'
 
-const noU: Command = {
+const noU: Discord.Command = {
   name: 'No U',
   description: 'No U!!!!',
   trigger: (message: Discord.Message): boolean => {
     const lowerContent = message.content.toLowerCase()
-    if (odds(1, 5) && lowerContent.startsWith('you')) return true
+    if (odds(1, 10) && lowerContent.startsWith('you')) return false
     return false
   },
-  execute: async (message: Discord.Message, args): Promise<void> => {
-    await message.channel.send(`<@${message.author.id}> no u`)
+  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
+    return message.channel.send(`<@${message.author.id}> no u`)
   }
 }
 

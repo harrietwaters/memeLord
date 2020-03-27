@@ -1,9 +1,8 @@
 import * as Discord from 'discord.js'
 import * as Canvas from 'canvas'
-import { Command } from '../interfaces'
 import { odds } from '../lib/util'
 
-export const sPoNgEbOb: Command = {
+const sPoNgEbOb: Discord.Command = {
   name: 'a sPonGe bOb mEmE',
   description: 'I don\'t want to do the capitalization thing anymore',
   trigger: (message: Discord.Message): boolean => {
@@ -11,7 +10,7 @@ export const sPoNgEbOb: Command = {
     if (message.cleanContent.toLowerCase().length < 32) return true
     return false
   },
-  execute: async (message: Discord.Message, args): Promise<void> => {
+  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
     const mEsSaGge: string[] = []
     for (let i = 0; i + 1 <= message.cleanContent.length; i += 2) {
       mEsSaGge.push(message.cleanContent[i].toLowerCase())
@@ -41,7 +40,7 @@ export const sPoNgEbOb: Command = {
     ctx.strokeText(mEsSaGge.join(''), x, y, maxWidth)
 
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'sPoNgEbOb.jpg')
-    await message.channel.send(`<@${message.author.id}>`, attachment)
+    return message.channel.send(`<@${message.author.id}>`, attachment)
   }
 }
 

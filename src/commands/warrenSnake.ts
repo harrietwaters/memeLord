@@ -1,7 +1,6 @@
 import * as Discord from 'discord.js'
-import { Command } from '../interfaces'
 
-const warrenSnake: Command = {
+const warrenSnake: Discord.Command = {
   name: 'Warren Snake',
   description: 'Warren is a snake',
   trigger: (message: Discord.Message): boolean => {

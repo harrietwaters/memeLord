@@ -1,8 +1,7 @@
 import * as Discord from 'discord.js'
 import * as fs from 'fs'
-import { Command } from '../interfaces'
 
-export const coolAbed: Command = {
+const coolAbed: Discord.Command = {
   name: 'Cool Abed',
   description: 'Cool. Cool Cool Cool.',
   trigger: (message: Discord.Message): boolean => {
@@ -21,10 +20,10 @@ export const coolAbed: Command = {
 
     return false
   },
-  execute: async (message: Discord.Message, args): Promise<void> => {
+  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
     const coolAbedGif = fs.readFileSync('images/coolAbed.gif')
     const attachment = new Discord.MessageAttachment(coolAbedGif, 'coolAbed.gif')
-    await message.channel.send(`<@${message.author.id}>`, attachment)
+    return message.channel.send(`<@${message.author.id}>`, attachment)
   }
 }
 

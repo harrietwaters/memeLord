@@ -1,17 +1,16 @@
 import * as Discord from 'discord.js'
 import * as Canvas from 'canvas'
-import { Command } from '../interfaces'
 import { getNouns } from '../parseMsg'
 import { odds } from '../lib/util'
 
-export const studyBlade: Command = {
+const studyBlade: Discord.Command = {
   name: 'Study Blade',
   description: 'While you were having premarital sex I wrote this command and now you have the audacity to come to me for a description?',
   trigger: async (message: Discord.Message): Promise<boolean> => {
     if (odds(1, 100)) return false
 
     // Extract nouns
-    const pos = await getNouns(message.content)
+    const pos = filterNouns(await getNouns(message.content))
 
     // Let's only do it if there's 2 or more
     if (pos.length > 2) {
@@ -19,8 +18,8 @@ export const studyBlade: Command = {
     }
     return false
   },
-  execute: async (message: Discord.Message, args): Promise<void> => {
-    const pos = await getNouns(message.content)
+  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
+    const pos = filterNouns(await getNouns(message.content))
     const canvas = Canvas.createCanvas(680, 510)
     const ctx = canvas.getContext('2d')
 
@@ -44,8 +43,16 @@ export const studyBlade: Command = {
     ctx.fillText(`${pos[2]}`, 120, 194)
 
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'shrekBlade.jpg')
-    await message.channel.send(`<@${message.author.id}>`, attachment)
+    return message.channel.send(`<@${message.author.id}>`, attachment)
   }
+}
+
+function filterNouns (nouns: string[]): string[] {
+  const forbiddenNouns: string[] = [
+    'i', 'you', 'me', ''
+  ]
+
+  return nouns.filter(n => !forbiddenNouns.includes(n.toLowerCase()))
 }
 
 module.exports = studyBlade

@@ -1,13 +1,12 @@
 import * as Discord from 'discord.js'
-import { Command } from '../interfaces'
 import { getNouns } from '../parseMsg'
 import { odds } from '../lib/util'
 
-const buttBot: Command = {
+const buttBot: Discord.Command = {
   name: 'Butt Bot',
   description: 'Finds a noun and swaps it with butt',
   trigger: async (message: Discord.Message, args: {client: Discord.Client}): Promise<boolean> => {
-    if (odds(1, 50)) return false
+    if (odds(1, 100)) return false
 
     // Extract nouns
     const pos = await getNouns(message.content)
@@ -18,7 +17,7 @@ const buttBot: Command = {
     }
     return false
   },
-  execute: async (message: Discord.Message, args): Promise<void> => {
+  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
     // Get our nouns
     const pos = await getNouns(message.content)
 
@@ -29,7 +28,7 @@ const buttBot: Command = {
     const buttMessage = message.content.replace(buttNoun, 'butt')
 
     // At that mf'er
-    await message.channel.send(`<@${message.author.id}> ${buttMessage}`)
+    return message.channel.send(`<@${message.author.id}> ${buttMessage}`)
   }
 }
 
