@@ -3,7 +3,7 @@
     "ignore": [".git", "node_modules"],
     "verbose": "true",
     "delay": 2500,
-    "exec": "npm run compile && node dist/app.js",
+    "exec": "npm run start",
     "watch": "src/",
     "ext": "ts",
     "env": {

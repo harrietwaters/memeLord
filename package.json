@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "docker-compose:up": "docker-compose up --build",
+    "start": "npm run compile && node --enable-source-maps dist/app.js",
     "start:watch": "nodemon",
     "lint": "eslint --fix --ext .js,.ts ./src",
     "compile": "npm run lint && rm -rf dist/ && tsc"

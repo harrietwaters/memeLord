@@ -20,7 +20,7 @@ const commandHandler: Discord.MessageHandler = {
         await MemeLordPosts.create({
           command: command.name,
           triggerMessage: message.cleanContent,
-          triggerResponse: msg.cleanContent,
+          triggerResponse: msg != null ? msg.cleanContent : '',
           // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
           attachmentUrl: msg != null ? msg?.attachments[0]?.url || 'no attatchement' : 'no attatchement'
         })
