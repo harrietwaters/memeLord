@@ -1,7 +1,7 @@
 import * as Discord from 'discord.js'
 import { findMemeCriminal } from '../lib/findMemeCriminal'
 import { hashAttachment } from '../lib/hashAttatchment'
-import { ShitPosts } from '../models/shitPosts'
+import { ShitPosts } from '../models'
 import { isMemeLord } from '../lib/util'
 
 const memeCrime: Discord.MessageHandler = {

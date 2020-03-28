@@ -1,6 +1,6 @@
 import * as Discord from 'discord.js'
 import { isMemeLord } from '../lib/util'
-import { MemeLordPosts } from '../models/memeLordPosts'
+import { MemeLordPosts } from '../models'
 
 const commandHandler: Discord.MessageHandler = {
   event: 'message',

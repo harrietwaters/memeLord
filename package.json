@@ -4,11 +4,13 @@
   "description": "a meme lord bot for discord",
   "main": "app.js",
   "scripts": {
-    "docker-compose:up": "docker-compose up --build",
+    "lint": "eslint --ext .ts ./src",
+    "compile": "npm run lint && rm -rf dist/ && tsc",
     "start": "npm run compile && node --enable-source-maps dist/app.js",
     "start:watch": "nodemon",
-    "lint": "eslint --fix --ext .js,.ts ./src",
-    "compile": "npm run lint && rm -rf dist/ && tsc"
+    "docker-compose:up": "docker-compose up --build",
+    "migrate": "sequelize-cli db:migrate --env prod",
+    "seed": "sequelize-cli db:seed:all --env prod"
   },
   "author": "harold waters",
   "license": "ISC",
@@ -32,6 +34,7 @@
     "discord.js": "^12.0.2",
     "nodemon": "^2.0.2",
     "sequelize": "^5.21.5",
+    "sequelize-cli": "^5.5.1",
     "sqlite3": "^4.1.1",
     "wordpos": "^2.0.0"
   }

@@ -1,8 +1,6 @@
 import * as fs from 'fs'
 import * as Discord from 'discord.js'
 
-import { sequelize } from './lib/db'
-
 const client = new Discord.Client()
 
 client.on('ready', async (): Promise<void> => {
@@ -24,7 +22,6 @@ client.on('ready', async (): Promise<void> => {
     client.on(handlerFile.event, handlerFile.handler)
   }
 
-  await sequelize.sync()
   console.log('I am ready for memes!')
 })
 

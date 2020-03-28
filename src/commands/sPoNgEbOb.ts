@@ -7,6 +7,7 @@ const sPoNgEbOb: Discord.Command = {
   description: 'I don\'t want to do the capitalization thing anymore',
   trigger: (message: Discord.Message): boolean => {
     if (odds(1, 100)) return false
+    if (message.cleanContent.toLowerCase().length > 1) return false
     if (message.cleanContent.toLowerCase().length < 32) return true
     return false
   },
