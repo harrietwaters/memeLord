@@ -1,5 +1,5 @@
 import { sequelize } from '../lib/db'
-import { MemeHouses } from './memeHouses';
+import { MemeHouses } from './memeHouses'
 import * as Sequelize from 'sequelize'
 
 export class SortingHatUsers extends Sequelize.Model {
