@@ -17,10 +17,13 @@ const putOnHat: Discord.Command = {
   },
   execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
     const houses = await MemeHouse.findAll({ include: [SortingHatUser] })
-    const sortedHouses = houses.sort((a, b) => a.get('SortingHatUsers').length < b.get('SortingHatUsers').length ? -1 : 1)
+
+    // First lets sort our houses in ascending order based on user count
+    const sortedHouses = houses.sort((a, b) => {
+      return a.get('SortingHatUsers').length < b.get('SortingHatUsers').length ? -1 : 1
+    })
 
     // First let's find our smallest houses
-    const houseIds: number[] = []
     const smallestHouseIds: number[] = []
     const lowestCount: number = sortedHouses[0].get('SortingHatUsers').length
 
@@ -29,13 +32,13 @@ const putOnHat: Discord.Command = {
       if (houseSize === lowestCount) {
         smallestHouseIds.push(house.get('id'))
       }
-      houseIds.push(house.get('id'))
     }
 
+    // Select a random house from the list of smallest houses
     const chosenHouse: number = smallestHouseIds[Math.floor(Math.random() * smallestHouseIds.length)]
 
     // Because wonder should exist in this world lets also have the opportunity to land in ANY house
-    const luckyHouse: number = houseIds[Math.floor(Math.random() * houseIds.length)]
+    const luckyHouse: number = sortedHouses[Math.floor(Math.random() * houses.length)].get('id')
 
     const user = await SortingHatUser.findOne({
       where: {
@@ -54,17 +57,20 @@ const putOnHat: Discord.Command = {
     }
 
     if (user == null) {
+      // If the user didn't already exist - create them
       await SortingHatUser.create({
         author: message.author.id,
         memeHouseId: newHouse.get('id')
         // @ts-ignore
       }, { include: MemeHouse })
     } else {
+      // If the user does exist - lets make sure that they're waited 1 day before asking
       const DAY_IN_MILLISECONDS = 86400000
       const now = Date.now()
       const lastUpdate = user.get('updatedAt').getTime()
 
       if (now - lastUpdate < DAY_IN_MILLISECONDS) {
+        // Chide them if need be!
         return message.channel.send(`Too soon, <@${message.author.id}>! Try again tomorrow!`)
       } else {
         await user.update({
