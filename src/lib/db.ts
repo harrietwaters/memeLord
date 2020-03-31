@@ -1,3 +1,4 @@
+import * as path from 'path'
 import { Sequelize } from 'sequelize'
 
 export const sequelize = new Sequelize('database', 'user', 'password', {
@@ -5,5 +6,5 @@ export const sequelize = new Sequelize('database', 'user', 'password', {
   dialect: 'sqlite',
   logging: false,
   // SQLite only
-  storage: 'db/database.sqlite'
+  storage: path.join(process.cwd(), 'db', 'database.sqlite')
 })

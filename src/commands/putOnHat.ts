@@ -17,20 +17,17 @@ const putOnHat: Discord.Command = {
   },
   execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
     const houses = await MemeHouse.findAll({ include: [SortingHatUser] })
+    const sortedHouses = houses.sort((a, b) => a.get('SortingHatUsers').length < b.get('SortingHatUsers').length ? -1 : 1)
 
     // First let's find our smallest houses
     const houseIds: number[] = []
-    let smallestHouseIds: number[] = []
-    let lowestCount: number = 0
+    const smallestHouseIds: number[] = []
+    const lowestCount: number = sortedHouses[0].get('SortingHatUsers').length
 
     for (const house of houses) {
       const houseSize = house.get('SortingHatUsers').length
       if (houseSize === lowestCount) {
         smallestHouseIds.push(house.get('id'))
-      }
-      if (houseSize < lowestCount) {
-        lowestCount = houseSize
-        smallestHouseIds = [house.get('id')]
       }
       houseIds.push(house.get('id'))
     }
