@@ -6,7 +6,7 @@ const buttBot: Discord.Command = {
   name: 'Butt Bot',
   description: 'Finds a noun and swaps it with butt',
   trigger: async (message: Discord.Message, args: {client: Discord.Client}): Promise<boolean> => {
-    if (odds(1, 100)) return false
+    if (!odds(1, 100)) return false
 
     // Extract nouns
     const pos = await getNouns(message.content)

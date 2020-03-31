@@ -45,7 +45,7 @@ const putOnHat: Discord.Command = {
 
     const newHouse = await MemeHouse.findOne({
       where: {
-        id: odds(1, 10) ? chosenHouse : luckyHouse
+        id: odds(1, 10) ? luckyHouse : chosenHouse
       }
     })
 

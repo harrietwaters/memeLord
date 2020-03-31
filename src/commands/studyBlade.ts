@@ -7,7 +7,7 @@ const studyBlade: Discord.Command = {
   name: 'Study Blade',
   description: 'While you were having premarital sex I wrote this command and now you have the audacity to come to me for a description?',
   trigger: async (message: Discord.Message): Promise<boolean> => {
-    if (odds(1, 100)) return false
+    if (!odds(1, 100)) return false
 
     // Extract nouns
     const pos = filterNouns(await getNouns(message.content))

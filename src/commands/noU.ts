@@ -6,7 +6,7 @@ const noU: Discord.Command = {
   description: 'No U!!!!',
   trigger: (message: Discord.Message): boolean => {
     const lowerContent = message.content.toLowerCase()
-    if (odds(1, 10) && lowerContent.startsWith('you')) return false
+    if (!odds(1, 10) && lowerContent.startsWith('you')) return false
     return false
   },
   execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
