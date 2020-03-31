@@ -1,21 +1,21 @@
 import { sequelize } from '../lib/db'
 import * as Sequelize from 'sequelize'
 
-export class ShitPosts extends Sequelize.Model {
+export class ShitPost extends Sequelize.Model {
   public id!: number;
   public user!: string;
   public messageContent!: string;
   public dateTime!: number;
   public imageHash!: string;
 }
-ShitPosts.init({
+ShitPost.init({
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true,
     allowNull: false
   },
-  user: {
+  author: {
     type: Sequelize.STRING,
     allowNull: false
   },
@@ -37,6 +37,5 @@ ShitPosts.init({
       fields: ['imageHash']
     }
   ],
-  sequelize,
-  modelName: 'shit_posts'
+  sequelize
 })

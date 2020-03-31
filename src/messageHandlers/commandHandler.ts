@@ -1,6 +1,6 @@
 import * as Discord from 'discord.js'
 import { isMemeLord } from '../lib/util'
-import { MemeLordPosts } from '../models'
+import { MemeLordPost } from '../models'
 
 const commandHandler: Discord.MessageHandler = {
   event: 'message',
@@ -17,7 +17,7 @@ const commandHandler: Discord.MessageHandler = {
         // Let's grab the message that we sent (if we did send one)
         const msg: Discord.Message = await command.execute(message, { client: message.client }) as Discord.Message
 
-        await MemeLordPosts.create({
+        await MemeLordPost.create({
           command: command.name,
           triggerMessage: message.cleanContent,
           triggerResponse: msg != null ? msg.cleanContent : '',

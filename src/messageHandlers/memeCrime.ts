@@ -1,7 +1,7 @@
 import * as Discord from 'discord.js'
 import { findMemeCriminal } from '../lib/findMemeCriminal'
 import { hashAttachment } from '../lib/hashAttatchment'
-import { ShitPosts } from '../models'
+import { ShitPost } from '../models'
 import { isMemeLord } from '../lib/util'
 
 const memeCrime: Discord.MessageHandler = {
@@ -24,7 +24,7 @@ const memeCrime: Discord.MessageHandler = {
 
     for (const [, attachment] of message.attachments) {
       const imageHash = await hashAttachment(attachment.attachment)
-      await ShitPosts.create({ user: message.author.id, messageContent: message.content, imageHash })
+      await ShitPost.create({ author: message.author.id, messageContent: message.content, imageHash })
     }
   }
 }

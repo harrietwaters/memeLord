@@ -2,7 +2,7 @@ import * as Discord from 'discord.js'
 import { Op } from 'sequelize'
 
 import { hashAttachment } from './hashAttatchment'
-import { ShitPosts } from '../models/shitPosts'
+import { ShitPost } from '../models/shitPost'
 
 export interface MemeCrime {
   user: string
@@ -15,7 +15,7 @@ export async function findMemeCriminal (message: Discord.Message): Promise<MemeC
     hashMap[(await hashAttachment(attachment.attachment))] = attachment.attachment
   }
 
-  const memeCriminal = await ShitPosts.findOne({
+  const memeCriminal = await ShitPost.findOne({
     where: {
       imageHash: {
         [Op.in]: Object.keys(hashMap)

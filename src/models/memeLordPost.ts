@@ -1,7 +1,7 @@
 import { sequelize } from '../lib/db'
 import * as Sequelize from 'sequelize'
 
-export class MemeLordPosts extends Sequelize.Model {
+export class MemeLordPost extends Sequelize.Model {
   public id!: number;
   public command!: string;
   public triggerMessage!: string;
@@ -10,7 +10,7 @@ export class MemeLordPosts extends Sequelize.Model {
   public attachmentUrl!: string;
 }
 
-MemeLordPosts.init({
+MemeLordPost.init({
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -49,6 +49,5 @@ MemeLordPosts.init({
       fields: ['dateTime']
     }
   ],
-  sequelize,
-  modelName: 'meme_lord_posts'
+  sequelize
 })

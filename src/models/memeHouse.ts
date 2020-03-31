@@ -1,20 +1,21 @@
 import { sequelize } from '../lib/db'
-import { SortingHatUsers } from './sortingHatUsers'
 import * as Sequelize from 'sequelize'
+import { SortingHatUser } from './sortingHatUser'
 
-export class MemeHouses extends Sequelize.Model {
+export class MemeHouse extends Sequelize.Model {
   public id!: number;
-  public houseName!: string;
+  public name!: string;
   public houseImage!: string;
+  public SortingHatUsers!: SortingHatUser[];
 }
-MemeHouses.init({
+MemeHouse.init({
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true,
     allowNull: false
   },
-  houseName: {
+  name: {
     type: Sequelize.STRING,
     allowNull: false
   },
@@ -23,8 +24,5 @@ MemeHouses.init({
     allowNull: false
   }
 }, {
-  sequelize,
-  modelName: 'meme_houses'
+  sequelize
 })
-
-MemeHouses.hasMany(SortingHatUsers)

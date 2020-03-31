@@ -4,7 +4,7 @@
   "description": "a meme lord bot for discord",
   "main": "app.js",
   "scripts": {
-    "lint": "eslint --ext .ts ./src",
+    "lint": "eslint --fix --ext .ts ./src",
     "compile": "npm run lint && rm -rf dist/ && tsc",
     "start": "npm run compile && node --enable-source-maps dist/app.js",
     "start:watch": "nodemon",
