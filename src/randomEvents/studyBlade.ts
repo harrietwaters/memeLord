@@ -3,9 +3,8 @@ import * as Canvas from 'canvas'
 import { getNouns } from '../parseMsg'
 import { odds } from '../lib/util'
 
-const studyBlade: Discord.Command = {
+const studyBlade: Discord.RandomEvent = {
   name: 'Study Blade',
-  description: 'While you were having premarital sex I wrote this command and now you have the audacity to come to me for a description?',
   trigger: async (message: Discord.Message): Promise<boolean> => {
     if (!odds(1, 100)) return false
 

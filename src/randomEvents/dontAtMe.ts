@@ -1,8 +1,7 @@
 import * as Discord from 'discord.js'
 
-const dontAtMe: Discord.Command = {
+const dontAtMe: Discord.RandomEvent = {
   name: 'dontAtMe',
-  description: 'Calls out those who do not wish to be atted',
   trigger: (message: Discord.Message): boolean => {
     const lowerMsg = message.content.toLowerCase()
     const triggerWords = ['don\'t at me', 'don\'t @ me', 'dont at me', 'dont @ me']

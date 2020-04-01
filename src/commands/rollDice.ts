@@ -4,7 +4,7 @@ const COMMAND = '!rollDice'
 
 const rollDice: Discord.Command = {
   name: 'Roll Dice',
-  description: 'Rolls dice',
+  description: `Rolls dice\n${helpMsg()}`,
   trigger: (message: Discord.Message): boolean => {
     const lowerMsg = message.content.toLowerCase()
     return lowerMsg.startsWith(COMMAND.toLowerCase())

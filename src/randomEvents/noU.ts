@@ -1,9 +1,8 @@
 import * as Discord from 'discord.js'
 import { odds } from '../lib/util'
 
-const noU: Discord.Command = {
+const noU: Discord.RandomEvent = {
   name: 'No U',
-  description: 'No U!!!!',
   trigger: (message: Discord.Message): boolean => {
     const lowerContent = message.content.toLowerCase()
     if (!odds(1, 10) && lowerContent.startsWith('you')) return false

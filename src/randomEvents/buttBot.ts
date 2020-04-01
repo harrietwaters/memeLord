@@ -2,9 +2,8 @@ import * as Discord from 'discord.js'
 import { getNouns } from '../parseMsg'
 import { odds } from '../lib/util'
 
-const buttBot: Discord.Command = {
+const buttBot: Discord.RandomEvent = {
   name: 'Butt Bot',
-  description: 'Finds a noun and swaps it with butt',
   trigger: async (message: Discord.Message, args: {client: Discord.Client}): Promise<boolean> => {
     if (!odds(1, 100)) return false
 

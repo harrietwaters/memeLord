@@ -1,9 +1,8 @@
 import * as Discord from 'discord.js'
 import * as fs from 'fs'
 
-const coolAbed: Discord.Command = {
+const coolAbed: Discord.RandomEvent = {
   name: 'Cool Abed',
-  description: 'Cool. Cool Cool Cool.',
   trigger: (message: Discord.Message): boolean => {
     const lowerContent = message.content.toLowerCase()
 

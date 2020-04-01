@@ -5,12 +5,17 @@ declare module 'discord.js' {
     client: Discord.Client
   }
 
-  export interface Command {
+  export interface Loadable {
     name: string
-    description: string
     trigger: (message: Discord.Message, args: CommandArgs) => Promise<boolean> | boolean
     execute: (message: Discord.Message, args: CommandArgs) => Promise<Discord.Message> | Promise<void> | Discord.Message | void
   }
+
+  export interface Command extends Loadable {
+    description: string
+  }
+
+  export type RandomEvent = Loadable
 
   export interface MessageHandler {
     event: string
@@ -19,5 +24,6 @@ declare module 'discord.js' {
 
   export interface Client {
     commands: Command[]
+    randomEvents: RandomEvent[]
   }
 }

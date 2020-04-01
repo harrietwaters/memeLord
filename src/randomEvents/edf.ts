@@ -1,15 +1,14 @@
 import * as Discord from 'discord.js'
 
-const smolDog: Discord.Command = {
-  name: 'smolDog',
-  description: 'SMOL DOG!',
+const edf: Discord.RandomEvent = {
+  name: 'EDF!',
   trigger: (message: Discord.Message): boolean => {
     const lowerMsg = message.content.toLowerCase()
-    return lowerMsg.includes('small') && lowerMsg.includes('dog')
+    return lowerMsg.includes('edf')
   },
   execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
-    return message.channel.send('SMOL DOG')
+    return message.channel.send('EDF! EDF!! EDF!!!')
   }
 }
 
-module.exports = smolDog
+module.exports = edf

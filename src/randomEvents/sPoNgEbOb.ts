@@ -2,9 +2,8 @@ import * as Discord from 'discord.js'
 import * as Canvas from 'canvas'
 import { odds } from '../lib/util'
 
-const sPoNgEbOb: Discord.Command = {
+const sPoNgEbOb: Discord.RandomEvent = {
   name: 'a sPonGe bOb mEmE',
-  description: 'I don\'t want to do the capitalization thing anymore',
   trigger: (message: Discord.Message): boolean => {
     if (!odds(1, 100)) return false
     if (message.cleanContent.toLowerCase().includes('http')) return false
