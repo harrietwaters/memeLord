@@ -1,7 +1,7 @@
 import * as Discord from 'discord.js'
 
 export function odds (numerator: number, demoninator: number): boolean {
-  return Math.ceil(Math.random() * demoninator) <= (numerator - 1)
+  return Math.ceil(Math.random() * demoninator) <= numerator
 }
 
 export function isMemeLord (message: Discord.Message): boolean {

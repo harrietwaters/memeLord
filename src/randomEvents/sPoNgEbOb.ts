@@ -7,9 +7,9 @@ const sPoNgEbOb: Discord.RandomEvent = {
   trigger: (message: Discord.Message): boolean => {
     if (!odds(1, 100)) return false
     if (message.cleanContent.toLowerCase().includes('http')) return false
-    if (message.cleanContent.toLowerCase().length > 1) return false
-    if (message.cleanContent.toLowerCase().length < 32) return true
-    return false
+    if (message.cleanContent.toLowerCase().length < 1) return false
+    if (message.cleanContent.toLowerCase().length > 32) return false
+    return true
   },
   execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
     const mEsSaGge: string[] = []
