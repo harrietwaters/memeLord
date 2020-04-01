@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "a meme lord bot for discord",
   "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com:haroldwaters/memeLord.git"
+  },
   "scripts": {
     "lint": "eslint --fix --ext .ts ./src",
     "compile": "npm run lint && rm -rf dist/ && tsc",
