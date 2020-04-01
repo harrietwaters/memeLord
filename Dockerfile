@@ -20,5 +20,5 @@ FROM base as release
 WORKDIR /app
 COPY . .
 RUN npm install --prod
-RUN npm run compile
+RUN npm run compile:prod
 CMD ["node", "./dist/app.js"]
