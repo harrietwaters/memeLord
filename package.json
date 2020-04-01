@@ -10,7 +10,6 @@
   "scripts": {
     "lint": "eslint --fix --ext .ts ./src",
     "compile": "npm run lint && rm -rf dist/ && tsc",
-    "compile:prod": "rm -rf dist/ && tsc",
     "start": "npm run compile && node --enable-source-maps dist/app.js",
     "start:watch": "nodemon",
     "docker-compose:up": "docker-compose up --build",
