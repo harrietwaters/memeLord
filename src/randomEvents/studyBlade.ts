@@ -1,6 +1,6 @@
 import * as Discord from 'discord.js'
 import * as Canvas from 'canvas'
-import { getNouns } from '../parseMsg'
+import { getNouns } from '../lib/parseMsg'
 import { odds } from '../lib/util'
 
 const studyBlade: Discord.RandomEvent = {

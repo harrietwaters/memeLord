@@ -1,5 +1,5 @@
 import * as Discord from 'discord.js'
-import { getNouns } from '../parseMsg'
+import { getNouns } from '../lib/parseMsg'
 import { odds } from '../lib/util'
 
 const buttBot: Discord.RandomEvent = {
