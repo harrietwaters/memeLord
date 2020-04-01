@@ -13,6 +13,7 @@ declare module 'discord.js' {
 
   export interface Command extends Loadable {
     description: string
+    example: string
   }
 
   export type RandomEvent = Loadable

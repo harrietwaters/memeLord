@@ -3,8 +3,9 @@ import * as Discord from 'discord.js'
 const COMMAND = '!rollDice'
 
 const rollDice: Discord.Command = {
-  name: 'Roll Dice',
-  description: `Rolls dice\n${helpMsg()}`,
+  name: '!rollDice',
+  description: 'Rolls dice',
+  example: helpMsg(),
   trigger: (message: Discord.Message): boolean => {
     const lowerMsg = message.content.toLowerCase()
     return lowerMsg.startsWith(COMMAND.toLowerCase())
@@ -17,8 +18,8 @@ const rollDice: Discord.Command = {
     let numberOfDie: number = 0
     let numberOfDieFaces: number = 0
 
-    if (diceArgs.length !== 2) isValid = false
-    if (!diceArgs[1].startsWith('d')) isValid = false
+    if (diceArgs.length !== 2) return message.channel.send('Invalid Command: ' + helpMsg())
+    if (!diceArgs[1].startsWith('d')) return message.channel.send('Invalid Command: ' + helpMsg())
 
     try {
       numberOfDie = parseInt(diceArgs[0])
@@ -28,7 +29,7 @@ const rollDice: Discord.Command = {
     }
 
     if (!isValid || numberOfDie === 0 || numberOfDieFaces === 0) {
-      return message.channel.send('Invalid Command\n' + helpMsg())
+      return message.channel.send('Invalid Command: ' + helpMsg())
     }
 
     const results: number[] = []
@@ -42,10 +43,7 @@ const rollDice: Discord.Command = {
 }
 
 function helpMsg (): string {
-  return `
-  !rollDice [number of die] [number faces]
-  example: "!rollDice 4 d12"
-  `
+  return '!rollDice [number of die] [number faces]'
 }
 
 module.exports = rollDice

@@ -9,8 +9,9 @@ import { odds } from '../lib/util'
 const COMMAND = '!putOnSortingHat'
 
 const putOnHat: Discord.Command = {
-  name: 'Put On Sorting Hat',
+  name: '!putOnSortingHat',
   description: 'Places a sorting hat on the Memer',
+  example: '!putOnSortingHat',
   trigger: (message: Discord.Message): boolean => {
     const lowerMsg = message.content.toLowerCase()
     return lowerMsg.startsWith(COMMAND.toLowerCase())

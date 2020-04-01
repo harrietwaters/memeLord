@@ -7,8 +7,9 @@ import {
 const COMMAND = '!listHouses'
 
 const listHouses: Discord.Command = {
-  name: 'List Houes',
+  name: '!listHouses',
   description: 'List Houses and their Users',
+  example: '!listHouses',
   trigger: (message: Discord.Message): boolean => {
     const lowerMsg = message.content.toLowerCase()
     return lowerMsg.startsWith(COMMAND.toLowerCase())

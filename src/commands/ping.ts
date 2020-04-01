@@ -1,8 +1,9 @@
 import * as Discord from 'discord.js'
 
 const ping: Discord.Command = {
-  name: 'ping',
+  name: '!ping',
   description: 'Ping!',
+  example: '!ping',
   trigger: (message: Discord.Message): boolean => {
     return message.content.toLowerCase().startsWith('!ping')
   },
