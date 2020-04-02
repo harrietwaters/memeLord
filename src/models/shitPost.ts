@@ -3,7 +3,7 @@ import * as Sequelize from 'sequelize'
 
 export class ShitPost extends Sequelize.Model {
   public id!: number;
-  public user!: string;
+  public author!: string;
   public messageContent!: string;
   public dateTime!: number;
   public imageHash!: string;
