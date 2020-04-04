@@ -1,0 +1,11 @@
+{
+  "prod": {
+    "username": "user",
+    "password": "password",
+    "database": "database",
+    "host": "localhost",
+    "dialect": "sqlite",
+    "logging": false,
+    "storage": "db/database.sqlite"
+  }
+}
