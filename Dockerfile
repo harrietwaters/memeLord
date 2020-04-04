@@ -11,16 +11,7 @@ ENTRYPOINT ["/tini", "--"]
 FROM base as compile
 
 WORKDIR /app
-COPY ./images ./images/
-COPY ./db ./db
-COPY ./src .src/
-COPY ./types ./types
-COPY ./jest.config.js ./
-COPY ./package.json ./
-COPY ./package-lock.json ./
-COPY ./.sequelizerc ./
-COPY ./tsconfig.json ./
-COPY ./tsconfig.prod.json ./
+COPY . .
 
 RUN npm install --prod
 RUN npm run compile:prod
