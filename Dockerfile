@@ -16,9 +16,11 @@ COPY ./db ./db
 COPY ./src .src/
 COPY ./types ./types
 COPY ./jest.config.js ./
-COPY ./package*.json ./
+COPY ./package.json ./
+COPY ./package-lock.json ./
 COPY ./.sequelizerc ./
-COPY ./tsconfig*.json ./
+COPY ./tsconfig.json ./
+COPY ./tsconfig.prod.json ./
 
 RUN npm install --prod
 RUN npm run compile:prod

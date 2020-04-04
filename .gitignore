@@ -1,4 +1,5 @@
 node_modules/
 dist
 db/database.sqlite
-.cache/*
+.cache/
+coverage/

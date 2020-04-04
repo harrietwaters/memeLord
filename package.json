@@ -16,7 +16,7 @@
     "docker-compose:up": "docker-compose up --build",
     "migrate": "sequelize-cli db:migrate --env prod",
     "seed": "sequelize-cli db:seed:all --env prod",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "author": "harold waters",
   "license": "ISC",
