@@ -6,7 +6,7 @@ const edf: Discord.RandomEvent = {
     const lowerMsg = message.content.toLowerCase()
     return lowerMsg.includes('edf')
   },
-  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
+  execute: async (message: Discord.Message): Promise<Discord.Message> => {
     return message.channel.send('EDF! EDF!! EDF!!!')
   }
 }

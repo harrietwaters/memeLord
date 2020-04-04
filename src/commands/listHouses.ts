@@ -14,7 +14,7 @@ const listHouses: Discord.Command = {
     const lowerMsg = message.content.toLowerCase()
     return lowerMsg.startsWith(COMMAND.toLowerCase())
   },
-  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
+  execute: async (message: Discord.Message): Promise<Discord.Message> => {
     const houses = await MemeHouse.findAll({ include: [SortingHatUser] })
     let msg: string = ''
     for (const house of houses) {

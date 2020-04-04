@@ -11,5 +11,9 @@
       }
     ],
     "@typescript-eslint/restrict-template-expressions": "off"
+  },
+  "env": {
+    "node": true,
+    "jest": true
   }
 }

@@ -6,7 +6,7 @@ const smolDog: Discord.RandomEvent = {
     const lowerMsg = message.content.toLowerCase()
     return lowerMsg.includes('small') && lowerMsg.includes('dog')
   },
-  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
+  execute: async (message: Discord.Message): Promise<Discord.Message> => {
     return message.channel.send('SMOL DOG')
   }
 }

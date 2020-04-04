@@ -16,7 +16,7 @@ const putOnHat: Discord.Command = {
     const lowerMsg = message.content.toLowerCase()
     return lowerMsg.startsWith(COMMAND.toLowerCase())
   },
-  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
+  execute: async (message: Discord.Message): Promise<Discord.Message> => {
     const houses = await MemeHouse.findAll({ include: [SortingHatUser] })
 
     // First lets sort our houses in ascending order based on user count

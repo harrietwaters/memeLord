@@ -6,7 +6,7 @@ const gundamLike: Discord.RandomEvent = {
     const lowerMsg = message.content.toLowerCase()
     return lowerMsg.includes('gundam')
   },
-  execute: async (message: Discord.Message, args): Promise<void> => {
+  execute: async (message: Discord.Message): Promise<void> => {
     await message.react('👍')
   }
 }

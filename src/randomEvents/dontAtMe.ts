@@ -12,7 +12,7 @@ const dontAtMe: Discord.RandomEvent = {
 
     return false
   },
-  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
+  execute: async (message: Discord.Message): Promise<Discord.Message> => {
     return message.channel.send(`<@${message.author.id}> ur a little bitch`)
   }
 }

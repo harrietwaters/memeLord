@@ -10,7 +10,7 @@ const rollDice: Discord.Command = {
     const lowerMsg = message.content.toLowerCase()
     return lowerMsg.startsWith(COMMAND.toLowerCase())
   },
-  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
+  execute: async (message: Discord.Message): Promise<Discord.Message> => {
     const lowerMsg: string = message.content.toLowerCase()
     const diceArgs: string[] = lowerMsg.split(/ +/).slice(1)
 

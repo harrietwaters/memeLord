@@ -6,7 +6,7 @@ const warrenSnake: Discord.RandomEvent = {
     const lowerMsg = message.content.toLowerCase()
     return lowerMsg.split(' ').includes('warren')
   },
-  execute: async (message: Discord.Message, args): Promise<void> => {
+  execute: async (message: Discord.Message): Promise<void> => {
     await message.react('🐍')
   }
 }

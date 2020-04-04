@@ -8,7 +8,7 @@ const noU: Discord.RandomEvent = {
     if (!odds(1, 10) && lowerContent.startsWith('you')) return false
     return false
   },
-  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
+  execute: async (message: Discord.Message): Promise<Discord.Message> => {
     return message.channel.send(`<@${message.author.id}> no u`)
   }
 }

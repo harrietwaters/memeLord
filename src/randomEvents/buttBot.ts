@@ -4,7 +4,7 @@ import { odds } from '../lib/util'
 
 const buttBot: Discord.RandomEvent = {
   name: 'Butt Bot',
-  trigger: async (message: Discord.Message, args: {client: Discord.Client}): Promise<boolean> => {
+  trigger: async (message: Discord.Message): Promise<boolean> => {
     if (!odds(1, 100)) return false
 
     // Extract nouns
@@ -16,7 +16,7 @@ const buttBot: Discord.RandomEvent = {
     }
     return false
   },
-  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
+  execute: async (message: Discord.Message): Promise<Discord.Message> => {
     // Get our nouns
     const pos = await getNouns(message.content)
 

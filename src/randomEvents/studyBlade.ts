@@ -17,7 +17,7 @@ const studyBlade: Discord.RandomEvent = {
     }
     return false
   },
-  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
+  execute: async (message: Discord.Message): Promise<Discord.Message> => {
     const pos = filterNouns(await getNouns(message.content))
     const canvas = Canvas.createCanvas(680, 510)
     const ctx = canvas.getContext('2d')

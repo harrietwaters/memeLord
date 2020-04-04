@@ -19,7 +19,7 @@ const coolAbed: Discord.RandomEvent = {
 
     return false
   },
-  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
+  execute: async (message: Discord.Message): Promise<Discord.Message> => {
     const coolAbedGif = fs.readFileSync('images/coolAbed.gif')
     const attachment = new Discord.MessageAttachment(coolAbedGif, 'coolAbed.gif')
     return message.channel.send(`<@${message.author.id}>`, attachment)

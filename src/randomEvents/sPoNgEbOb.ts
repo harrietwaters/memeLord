@@ -11,7 +11,7 @@ const sPoNgEbOb: Discord.RandomEvent = {
     if (message.cleanContent.toLowerCase().length > 32) return false
     return true
   },
-  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
+  execute: async (message: Discord.Message): Promise<Discord.Message> => {
     const mEsSaGge: string[] = []
     for (let i = 0; i + 1 <= message.cleanContent.length; i += 2) {
       mEsSaGge.push(message.cleanContent[i].toLowerCase())

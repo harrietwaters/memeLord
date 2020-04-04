@@ -13,12 +13,12 @@ const commandHandler: Discord.MessageHandler = {
     if (message.attachments.size > 0) return
 
     for (const command of message.client.commands) {
-      const shouldTrigger: boolean = await command.trigger(message, { client: message.client })
+      const shouldTrigger: boolean = await command.trigger(message)
       if (shouldTrigger) {
         console.log(`acting on command '${command.name}' for message \`${message.content}\``)
 
         // Let's grab the message that we sent (if we did send one)
-        const msg: Discord.Message = await command.execute(message, { client: message.client }) as Discord.Message
+        const msg: Discord.Message = await command.execute(message) as Discord.Message
 
         await MemeLordPost.create({
           command: command.name,
@@ -35,12 +35,12 @@ const commandHandler: Discord.MessageHandler = {
     const shuffledEvents = shuffle(message.client.randomEvents)
 
     for (const randomEvent of shuffledEvents) {
-      const shouldTrigger: boolean = await randomEvent.trigger(message, { client: message.client })
+      const shouldTrigger: boolean = await randomEvent.trigger(message)
       if (shouldTrigger) {
         console.log(`acting on command '${randomEvent.name}' for message \`${message.content}\``)
 
         // Let's grab the message that we sent (if we did send one)
-        const msg: Discord.Message = await randomEvent.execute(message, { client: message.client }) as Discord.Message
+        const msg: Discord.Message = await randomEvent.execute(message) as Discord.Message
 
         await MemeLordPost.create({
           command: randomEvent.name,

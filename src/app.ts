@@ -7,7 +7,9 @@ client.on('ready', async (): Promise<void> => {
   client.commands = []
   client.randomEvents = []
 
-  const extRegex = /.+\.[tj]s$/g
+  // We're gonna do a negetive look back in our regex to ignore any
+  // `.spec` files
+  const extRegex = /(?<!\.spec)\.[tj]s$/g
 
   const commandFiles: string[] = fs.readdirSync(`${__dirname}/commands/`).filter(file => file.match(extRegex))
   const randomEventFiles: string[] = fs.readdirSync(`${__dirname}/randomEvents/`).filter(file => file.match(extRegex))

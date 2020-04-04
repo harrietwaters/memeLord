@@ -10,16 +10,19 @@
   "scripts": {
     "lint": "eslint --fix --ext .ts ./src",
     "compile": "npm run lint && rm -rf dist/ && tsc",
+    "compile:prod": "rm -rf dist/ && tsc -p tsconfig.prod.json",
     "start": "npm run compile && node --enable-source-maps dist/app.js",
     "start:watch": "nodemon",
     "docker-compose:up": "docker-compose up --build",
     "migrate": "sequelize-cli db:migrate --env prod",
-    "seed": "sequelize-cli db:seed:all --env prod"
+    "seed": "sequelize-cli db:seed:all --env prod",
+    "test": "jest"
   },
   "author": "harold waters",
   "license": "ISC",
   "devDependencies": {
     "@types/bluebird": "^3.5.30",
+    "@types/jest": "^25.2.1",
     "@types/node": "^13.9.0",
     "@types/validator": "^12.0.1",
     "@typescript-eslint/eslint-plugin": "^2.23.0",
@@ -30,6 +33,8 @@
     "eslint-plugin-node": "^9.2.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "jest": "^25.2.7",
+    "ts-jest": "^25.3.1",
     "ts-node": "^8.8.1",
     "typescript": "^3.8.3"
   },
