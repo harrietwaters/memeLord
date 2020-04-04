@@ -3,7 +3,7 @@ import * as Discord from 'discord.js'
 const COMMAND = '!rollDice'
 
 const rollDice: Discord.Command = {
-  name: '!rollDice',
+  name: COMMAND,
   description: 'Rolls dice',
   example: helpMsg(),
   trigger: (message: Discord.Message): boolean => {
@@ -14,7 +14,6 @@ const rollDice: Discord.Command = {
     const lowerMsg: string = message.content.toLowerCase()
     const diceArgs: string[] = lowerMsg.split(/ +/).slice(1)
 
-    let isValid: boolean = true
     let numberOfDie: number = 0
     let numberOfDieFaces: number = 0
 
@@ -25,10 +24,10 @@ const rollDice: Discord.Command = {
       numberOfDie = parseInt(diceArgs[0])
       numberOfDieFaces = parseInt(diceArgs[1].slice(1))
     } catch (err) {
-      isValid = false
+      return message.channel.send('Invalid Command: ' + helpMsg())
     }
 
-    if (!isValid || numberOfDie === 0 || numberOfDieFaces === 0) {
+    if (numberOfDie === 0 || numberOfDieFaces === 0) {
       return message.channel.send('Invalid Command: ' + helpMsg())
     }
 
@@ -46,4 +45,5 @@ function helpMsg (): string {
   return '!rollDice [number of die] [number faces]'
 }
 
+export default rollDice
 module.exports = rollDice

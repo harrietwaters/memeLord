@@ -8,6 +8,7 @@ module.exports = {
     '!<rootDir>/src/**/__*__/*',
   ],
   testPathIgnorePatterns: [
+      "/dist/",
       "/node_modules/",
       ".js$"
   ],
