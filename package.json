@@ -8,7 +8,7 @@
     "url": "https://github.com:haroldwaters/memeLord.git"
   },
   "scripts": {
-    "lint": "eslint --fix --ext .ts ./src",
+    "lint": "eslint --ext .ts ./src",
     "compile": "npm run lint && rm -rf dist/ && tsc",
     "compile:prod": "rm -rf dist/ && tsc -p tsconfig.prod.json",
     "start": "npm run compile && node --enable-source-maps dist/app.js",
@@ -35,8 +35,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "jest": "^25.2.7",
     "ts-jest": "^25.3.1",
-    "ts-node": "^8.8.1",
-    "typescript": "^3.8.3"
+    "ts-node": "^8.8.1"
   },
   "dependencies": {
     "canvas": "^2.6.1",
@@ -45,6 +44,7 @@
     "sequelize": "^5.21.5",
     "sequelize-cli": "^5.5.1",
     "sqlite3": "^4.1.1",
+    "typescript": "^3.8.3",
     "wordpos": "^2.0.0"
   }
 }

@@ -7,17 +7,23 @@ RUN chmod +x /tini
 WORKDIR /app
 ENTRYPOINT ["/tini", "--"]
 
-# start-watch
-FROM base as start-watch
+# compile
+FROM base as compile
 
 WORKDIR /app
-COPY . .
-RUN npm install
-RUN npm run compile
+COPY ./images ./images/
+COPY ./db ./db
+COPY ./src .src/
+COPY ./types ./types
+COPY ./jest.config.js ./
+COPY ./package*.json ./
+COPY ./.sequelizerc ./
+COPY ./tsconfig*.json ./
+
+RUN npm install --prod
+RUN npm run compile:prod
 
 # Release
 FROM base as release
 WORKDIR /app
-COPY . .
-RUN npm install --prod
 CMD ["node", "./dist/app.js"]
