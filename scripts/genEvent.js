@@ -11,7 +11,7 @@ const ${eventName}: Discord.RandomEvent = {
     const val = await Promise.resolve(false)
     return val
   },
-  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
+  execute: async (message: Discord.Message): Promise<Discord.Message> => {
     return message.channel.send('eat my shorts!')
   }
 }

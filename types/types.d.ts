@@ -19,6 +19,11 @@ declare module 'discord.js' {
     handler: (message: Discord.Message) => Promise<void> | void
   }
 
+  export interface ReactHandler {
+    event: string
+    handler: (message: Discord.MessageReaction) => Promise<void> | void
+  }
+
   export interface Client {
     commands: Command[]
     randomEvents: RandomEvent[]

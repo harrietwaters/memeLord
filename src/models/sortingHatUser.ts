@@ -3,11 +3,10 @@ import { sequelize } from '../lib/db'
 import { MemeHouse } from './memeHouse'
 
 export class SortingHatUser extends Sequelize.Model {
-  id!: number
-  userId!: string
-  houseId!: string
+  author!: number
   lastHatTime!: number
-  createAt!: Date
+  memeHouseId!: string
+  createdAt!: Date
   updatedAt!: Date
 }
 
@@ -30,8 +29,7 @@ SortingHatUser.init({
     }
   }
 }, {
-  sequelize,
-  modelName: 'SortingHatUser'
+  sequelize
 })
 
 MemeHouse.hasMany(SortingHatUser, {

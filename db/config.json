@@ -1,4 +1,13 @@
 {
+  "test": {
+    "username": "user",
+    "password": "password",
+    "database": "database",
+    "host": "localhost",
+    "dialect": "sqlite",
+    "logging": true,
+    "storage": "db/database.test.sqlite"
+  },
   "prod": {
     "username": "user",
     "password": "password",

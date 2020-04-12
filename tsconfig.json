@@ -69,10 +69,13 @@
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
   },
   "include": [
+    "db/**/*",
     "src/**/*",
+    "scripts/**/*",
     "types/**/*"
   ],
   "exclude": [
+    "db/database.*",
     "node_modules"
   ]
 }

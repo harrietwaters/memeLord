@@ -7,13 +7,13 @@ function genCommand(commandName){
 const COMMAND = '!${commandName}'
 
 const ${commandName}: Discord.Command = {
-  name: '${commandName}',
+  name: '!${commandName}',
   description: 'Put a helpful description here!',
   example: '!${commandName}',
   trigger: (message: Discord.Message): boolean => {
-    return message.content.toLowerCase().startsWith(COMMAND)
+    return message.content.startsWith(COMMAND)
   },
-  execute: async (message: Discord.Message, args): Promise<Discord.Message> => {
+  execute: async (message: Discord.Message): Promise<Discord.Message> => {
     return message.channel.send('eat my shorts!')
   }
 }
