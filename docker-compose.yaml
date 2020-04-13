@@ -3,6 +3,7 @@ services:
   memelord:
     build:
       context: .
+      target: release
     restart: on-failure
     volumes:
       - ${PWD}/src/:/app/src/
