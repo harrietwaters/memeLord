@@ -75,7 +75,6 @@
     "types/**/*"
   ],
   "exclude": [
-    "db/database.*",
     "node_modules"
   ]
 }

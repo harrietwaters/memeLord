@@ -1,12 +1,13 @@
 {
   "extends": "./tsconfig.json",
   "include": [
+    "db/**/*",
     "src/**/*",
     "types/**/*"
   ],
   "exclude": [
     "node_modules",
     "./**/*.spec.ts",
-    "./**/__mocks/"
+    "./**/__mocks__/"
   ]
 }

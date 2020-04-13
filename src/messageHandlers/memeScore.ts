@@ -15,8 +15,6 @@ const memeScorer: Discord.ReactHandler = {
       sortingHatUserId: message.author.id,
       messageId: message.id
     })
-
-    console.log(message.author.id)
   }
 }
 
