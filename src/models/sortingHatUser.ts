@@ -8,6 +8,7 @@ export class SortingHatUser extends Sequelize.Model {
   memeHouseId!: string
   createdAt!: Date
   updatedAt!: Date
+  MemeHouse!: MemeHouse
 }
 
 SortingHatUser.init({
@@ -27,12 +28,19 @@ SortingHatUser.init({
       model: MemeHouse,
       key: 'id'
     }
+  },
+  createdAt: {
+    type: Sequelize.INTEGER,
+    defaultValue: () => Date.now(),
+    allowNull: false
+  },
+  updatedAt: {
+    type: Sequelize.INTEGER,
+    defaultValue: () => Date.now(),
+    allowNull: false
   }
 }, {
   sequelize
 })
 
-MemeHouse.hasMany(SortingHatUser, {
-  foreignKey: 'memeHouseId'
-})
 SortingHatUser.belongsTo(MemeHouse)

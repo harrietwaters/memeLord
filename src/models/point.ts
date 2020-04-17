@@ -7,6 +7,7 @@ export class Point extends Sequelize.Model {
   messageId!: string
   point!: number
   createdAt!: Date
+  SortingHatUser!: SortingHatUser
 }
 
 Point.init({
@@ -35,6 +36,11 @@ Point.init({
   }
 }, {
   sequelize
+})
+
+SortingHatUser.hasMany(Point, {
+  foreignKey: 'sortingHatUserId',
+  sourceKey: 'author'
 })
 
 Point.hasOne(SortingHatUser, {
