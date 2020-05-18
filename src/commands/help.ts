@@ -22,4 +22,3 @@ export const help: Discord.Command = {
 }
 
 export default help
-module.exports = help

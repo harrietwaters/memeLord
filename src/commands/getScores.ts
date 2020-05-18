@@ -81,4 +81,4 @@ const getScores: Discord.Command = {
   }
 }
 
-module.exports = getScores
+export default getScores

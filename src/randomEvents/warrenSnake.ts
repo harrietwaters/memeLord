@@ -11,4 +11,4 @@ const warrenSnake: Discord.RandomEvent = {
   }
 }
 
-module.exports = warrenSnake
+export default warrenSnake

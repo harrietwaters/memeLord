@@ -42,4 +42,4 @@ const listHouses: Discord.Command = {
   }
 }
 
-module.exports = listHouses
+export default listHouses

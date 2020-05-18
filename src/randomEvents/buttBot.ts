@@ -31,4 +31,4 @@ const buttBot: Discord.RandomEvent = {
   }
 }
 
-module.exports = buttBot
+export default buttBot

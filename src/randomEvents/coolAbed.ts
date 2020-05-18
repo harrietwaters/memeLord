@@ -26,4 +26,4 @@ const coolAbed: Discord.RandomEvent = {
   }
 }
 
-module.exports = coolAbed
+export default coolAbed

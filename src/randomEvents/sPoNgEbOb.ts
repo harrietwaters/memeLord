@@ -45,4 +45,4 @@ const sPoNgEbOb: Discord.RandomEvent = {
   }
 }
 
-module.exports = sPoNgEbOb
+export default sPoNgEbOb

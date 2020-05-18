@@ -54,4 +54,4 @@ function filterNouns (nouns: string[]): string[] {
   return nouns.filter(n => !forbiddenNouns.includes(n.toLowerCase()))
 }
 
-module.exports = studyBlade
+export default studyBlade

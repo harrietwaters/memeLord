@@ -107,4 +107,4 @@ async function createHouseImage (house: MemeHouse): Promise<Discord.MessageAttac
   return new Discord.MessageAttachment(canvas.toBuffer(), 'house.jpg')
 }
 
-module.exports = putOnHat
+export default putOnHat

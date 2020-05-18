@@ -11,4 +11,4 @@ const gundamLike: Discord.RandomEvent = {
   }
 }
 
-module.exports = gundamLike
+export default gundamLike

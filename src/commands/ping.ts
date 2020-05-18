@@ -13,4 +13,3 @@ export const ping: Discord.Command = {
 }
 
 export default ping
-module.exports = ping

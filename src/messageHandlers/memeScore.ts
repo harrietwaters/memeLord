@@ -18,4 +18,4 @@ const memeScorer: Discord.ReactHandler = {
   }
 }
 
-module.exports = memeScorer
+export default memeScorer

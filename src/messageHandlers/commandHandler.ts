@@ -69,4 +69,4 @@ function shuffle (commands: Discord.RandomEvent[]): Discord.RandomEvent[] {
   return shuffledCommands
 }
 
-module.exports = commandHandler
+export default commandHandler

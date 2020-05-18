@@ -17,4 +17,4 @@ const dontAtMe: Discord.RandomEvent = {
   }
 }
 
-module.exports = dontAtMe
+export default dontAtMe

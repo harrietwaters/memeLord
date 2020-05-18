@@ -13,4 +13,4 @@ const peteRat: Discord.RandomEvent = {
   }
 }
 
-module.exports = peteRat
+export default peteRat

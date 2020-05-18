@@ -11,4 +11,4 @@ const edf: Discord.RandomEvent = {
   }
 }
 
-module.exports = edf
+export default edf

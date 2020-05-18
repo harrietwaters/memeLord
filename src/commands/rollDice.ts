@@ -46,4 +46,3 @@ function helpMsg (): string {
 }
 
 export default rollDice
-module.exports = rollDice

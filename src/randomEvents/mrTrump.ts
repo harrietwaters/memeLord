@@ -11,4 +11,4 @@ const mrTrump: Discord.RandomEvent = {
   }
 }
 
-module.exports = mrTrump
+export default mrTrump

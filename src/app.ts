@@ -1,37 +1,26 @@
-import * as fs from 'fs'
 import * as Discord from 'discord.js'
+
+import commands from './commands'
+import randomEvents from './randomEvents'
+import handlers from './messageHandlers'
 
 const client = new Discord.Client()
 
-client.on('ready', async (): Promise<void> => {
-  client.commands = []
-  client.randomEvents = []
+client.on('ready', (): void => {
+  client.commands = commands
+  client.randomEvents = randomEvents
 
-  // We're gonna do a negetive look back in our regex to ignore any
-  // `.spec` files
-  const extRegex = /(?<!\.spec)\.[tj]s$/g
-
-  const commandFiles: string[] = fs.readdirSync(`${__dirname}/commands/`).filter(file => file.match(extRegex))
-  const randomEventFiles: string[] = fs.readdirSync(`${__dirname}/randomEvents/`).filter(file => file.match(extRegex))
-  const handlerFiles: string[] = fs.readdirSync(`${__dirname}/messageHandlers/`).filter(file => file.match(extRegex))
-
-  for (const file of commandFiles) {
-    const commandFile: Discord.Command = await import(`${__dirname}/commands/${file}`)
-    client.commands.push(commandFile)
-  }
-
-  for (const file of randomEventFiles) {
-    const randomEventFile: Discord.RandomEvent = await import(`${__dirname}/randomEvents/${file}`)
-    client.randomEvents.push(randomEventFile)
-  }
-
-  for (const file of handlerFiles) {
-    const handlerFile: Discord.MessageHandler = await import(`${__dirname}/messageHandlers/${file}`)
-    client.on(handlerFile.event, handlerFile.handler)
+  for (const handler of handlers) {
+    client.on(handler.event, handler.handler)
   }
 
   console.log('I am ready for memes!')
 })
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
 client.login(process.env.CLIENT_TOKEN)
+  .then(_ => {
+    console.log('I am logged in!')
+  })
+  .catch(err => {
+    console.log(err)
+  })

@@ -11,4 +11,4 @@ const smolDog: Discord.RandomEvent = {
   }
 }
 
-module.exports = smolDog
+export default smolDog

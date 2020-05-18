@@ -58,4 +58,4 @@ const memeCrime: Discord.MessageHandler = {
   }
 }
 
-module.exports = memeCrime
+export default memeCrime

@@ -13,4 +13,4 @@ const noU: Discord.RandomEvent = {
   }
 }
 
-module.exports = noU
+export default noU
