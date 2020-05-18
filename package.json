@@ -13,6 +13,7 @@
     "compile:prod": "rm -rf dist/ && tsc -p tsconfig.prod.json",
     "start": "npm run compile && node --enable-source-maps dist/app.js",
     "start:watch": "nodemon",
+    "start:debug": "ts-node ",
     "docker-compose:up": "docker-compose up --build",
     "migrate": "sequelize-cli db:migrate --env prod",
     "seed": "sequelize-cli db:seed:all --env prod",
@@ -41,6 +42,7 @@
   "dependencies": {
     "canvas": "^2.6.1",
     "discord.js": "^12.0.2",
+    "rxjs": "^6.5.5",
     "sequelize": "^5.21.5",
     "sequelize-cli": "^5.5.1",
     "sqlite3": "^4.1.1",

@@ -14,18 +14,14 @@ COPY ./types ./types
 COPY ./src  ./src
 COPY ./db  ./db
 
-FROM base as build-prod
-WORKDIR /app
-RUN npm install --prod --silent
-
 # compile
-FROM build-prod as compile
+FROM base as compile-prod
 WORKDIR /app
 
 RUN npm install --prod --silent
 RUN npm run compile:prod
 
 # release
-FROM build-prod as release
+FROM compile-prod as release
 WORKDIR /app
 CMD ["node", "./dist/app.js"]
