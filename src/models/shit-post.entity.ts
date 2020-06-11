@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, getRepository } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class ShitPost {
