@@ -9,4 +9,5 @@ FROM node:12
 WORKDIR /app
 COPY --from=builder /app ./
 RUN npm run typeorm:migrate
+EXPOSE 3000
 CMD ["npm", "run", "start:prod"]

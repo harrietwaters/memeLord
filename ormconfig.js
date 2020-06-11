@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = [{
     name: 'default',
     type: 'sqlite',
     database: 'db/database.sqlite',
@@ -6,4 +6,18 @@ module.exports = {
     migrationsTableName: 'typeorm_migrations',
     entities: ["dist/**/*.entity{.ts,.js}"],
     cli: { migrationsDir: 'src/migrations' },
-}
+}, {
+    name: 'prod',
+    type: 'postgres',
+    // ur: process.env.POSTGRES_URL,
+    host: process.env.POSTGRES_HOST,
+    // port: process.env.POSTGRES_PORT,
+    username: process.env.POSTGRES_USERNAME,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DATABASE,
+    // schema: process.env.POSTGRES_SCHEMA,
+    migrations: ['dist/migrations/*.js'],
+    migrationsTableName: 'typeorm_migrations',
+    entities: ["dist/**/*.entity{.ts,.js}"],
+    cli: { migrationsDir: 'src/migrations' },
+}]

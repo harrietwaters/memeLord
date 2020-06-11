@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { TerminusModule} from '@nestjs/terminus';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
@@ -12,6 +13,7 @@ import { MemeLordPost } from './models/meme-lord-post.entity';
 import { ShitPost } from './models/shit-post.entity';
 import { SortingHatUser } from './models/sorting-hat-user.entity';
 import { Point } from './models/point.entity';
+import { HealthController } from './health/health.controller';
 
 @Module({
     imports: [
@@ -21,9 +23,10 @@ import { Point } from './models/point.entity';
         TriggeredEventsModule,
         UtilitiesModule,
         TypeOrmModule.forFeature([ShitPost, MemeLordPost, MemeHouse, Point, SortingHatUser]),
-        TypeOrmModule.forRoot()
+        TypeOrmModule.forRoot(),
+        TerminusModule,
     ],
-    controllers: [AppController],
+    controllers: [AppController, HealthController],
     providers: [AppService],
     exports: []
 })
