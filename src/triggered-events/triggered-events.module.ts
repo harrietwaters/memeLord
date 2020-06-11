@@ -14,9 +14,27 @@ import { WontDoService } from './wont-do/wont-do.service';
 import { SpongebobService } from './spongebob/spongebob.service';
 import { StudyBladeService } from './study-blade/study-blade.service';
 import { UtilitiesModule } from 'src/utilities/utilities.module';
+import { MemeCrimeService } from './meme-crime/meme-crime.service';
+import { SaveShitPostService } from './save-shit-post/save-shit-post.service';
 
 @Module({
-    providers: [GundamLikeService, ButtBotService, CoolAbedService, DontAtMeService, EdfService, MrTrumpService, NoUService, PeteRatService, SmolDogService, WarrenSnakeService, WontDoService, SpongebobService, StudyBladeService],
-    imports: [DiscordModule, UtilitiesModule],
+    providers: [
+        GundamLikeService,
+        ButtBotService,
+        CoolAbedService,
+        DontAtMeService,
+        EdfService,
+        MrTrumpService,
+        NoUService,
+        PeteRatService,
+        SmolDogService,
+        WarrenSnakeService,
+        WontDoService,
+        SpongebobService,
+        StudyBladeService,
+        MemeCrimeService,
+        SaveShitPostService
+    ],
+    imports: [DiscordModule, UtilitiesModule]
 })
 export class TriggeredEventsModule {}

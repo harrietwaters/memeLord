@@ -4,13 +4,13 @@ import { TriggeredEvent, ReplyWithReturn, Odds } from 'src/common/decorators';
 import { TriggeredEventService } from 'src/common/types';
 
 @Injectable()
-export class NoUService implements TriggeredEventService  {
+export class NoUService implements TriggeredEventService {
     constructor(client: DiscordClient) {
-        client.addTriggerEventListener(this.response);
+        client.addTriggerEvent(this.response);
     }
 
-    @Odds(1,5)
-    @TriggeredEvent(['You', 'u'])
+    @Odds(1, 5)
+    @TriggeredEvent(msg => msg.toLowerCase().startsWith('you'))
     @ReplyWithReturn()
     public async response() {
         return 'no u';

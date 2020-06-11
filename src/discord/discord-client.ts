@@ -1,55 +1,60 @@
 import * as Discord from 'discord.js';
 import { ConfigService } from '@nestjs/config';
-import { Injectable } from '@nestjs/common';
-import { TriggeredEventHandler, CommandHandler } from 'src/common/types';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 
 export type DiscordMessage = Discord.Message;
 
+// TODO: Better name and types
+async function* getExec(message: DiscordMessage, commands: Array<any>) {
+    for (const command of commands) {
+        yield command(message);
+    }
+}
+
 @Injectable()
-export class DiscordClient {
+export class DiscordClient implements OnModuleInit {
     private readonly client: Discord.Client;
     private readonly configService: ConfigService;
+    // TODO Type these
+    private readonly commands: Array<any> = [];
+    private readonly triggeredEvents: Array<any> = [];
 
     constructor(configService: ConfigService) {
         this.client = new Discord.Client();
-        this.client.setMaxListeners(100)
+        this.client.on('message', this.handleMessages.bind(this));
         this.configService = configService;
     }
 
-    private async onModuleInit(){
+    public async onModuleInit() {
         await this.login();
     }
 
     private login(): Promise<string> {
-        return this.client.login(
-            this.configService.get<string>('CLIENT_TOKEN')
-        );
+        return this.client.login(this.configService.get<string>('CLIENT_TOKEN'));
     }
 
-    public addCommandEventListener(
-        listener: any
-    ): void {
-        this.addListener('message', function(message: DiscordMessage) {
-            if( message.client.users.cache.get(message.author.id)?.username === 'MemeLord') return
-            if( message.cleanContent.toLowerCase().includes('http')) return
-            listener(message)
-        });
+    public addCommandEvent(listener: any): void {
+        this.commands.push(listener);
     }
 
-    public addTriggerEventListener(
-        listener: any
-    ): void {
-        this.addListener('message', function(message: DiscordMessage) {
-            if( message.client.users.cache.get(message.author.id)?.username === 'MemeLord') return
-            if( message.cleanContent.toLowerCase().includes('http')) return
-            listener(message)
-        });
+    public addTriggerEvent(listener: any): void {
+        this.triggeredEvents.push(listener);
     }
 
-    private addListener(
-        event: string,
-        listener: (...args) => string | Promise<string> | void | Promise<void>
+    public addListener<K extends keyof Discord.ClientEvents>(
+        event: K,
+        // TODO: Type this
+        listener: (...args: Discord.ClientEvents[K]) => any
     ): void {
-        this.client.addListener(event, listener);
+        this.client.on(event, listener);
+    }
+
+    private async handleMessages(message: Discord.Message): Promise<void> {
+        for await (const exec of getExec(message, this.commands)) {
+            if (exec) return exec(message);
+        }
+        for await (const exec of getExec(message, this.triggeredEvents)) {
+            if (exec) return exec(message);
+        }
     }
 }

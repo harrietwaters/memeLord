@@ -6,14 +6,13 @@ import { TriggeredEventService } from 'src/common/types';
 @Injectable()
 export class PeteRatService implements TriggeredEventService {
     constructor(client: DiscordClient) {
-        client.addTriggerEventListener(this.response);
+        client.addTriggerEvent(this.response);
     }
 
     @TriggeredEvent('pete')
-    public async response(cleanMessage:string, message: DiscordMessage) {
-        await message.react('🐀')
-        await message.react('🍞')
-        await message.react('📈')
+    public async response(cleanMessage: string, message: DiscordMessage) {
+        await message.react('🐀');
+        await message.react('🍞');
+        await message.react('📈');
     }
 }
-

@@ -5,8 +5,8 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class GundamLikeService implements TriggeredEventService {
-    constructor(client: DiscordClient){
-        client.addTriggerEventListener(this.response)
+    constructor(client: DiscordClient) {
+        client.addTriggerEvent(this.response);
     }
 
     @TriggeredEvent('gundam')

@@ -4,10 +4,8 @@ import { Command, ReplyWithReturn } from 'src/common/decorators';
 
 @Injectable()
 export class PingService {
-    private readonly client: DiscordClient;
     constructor(client: DiscordClient) {
-        this.client = client;
-        this.client.addTriggerEventListener(this.ping);
+        client.addTriggerEvent(this.ping);
     }
 
     @Command('!ping')

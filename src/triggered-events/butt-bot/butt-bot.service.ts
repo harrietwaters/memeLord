@@ -6,10 +6,10 @@ import { WordSmith } from 'src/utilities/word-smith';
 
 @Injectable()
 export class ButtBotService implements TriggeredEventService {
-    private readonly wordSmith: WordSmith
+    private readonly wordSmith: WordSmith;
 
     constructor(client: DiscordClient, wordSmith: WordSmith) {
-        client.addTriggerEventListener(this.response);
+        client.addTriggerEvent(this.response);
         this.wordSmith = wordSmith;
     }
 
@@ -19,12 +19,8 @@ export class ButtBotService implements TriggeredEventService {
     public async response(cleanContent: string, message: DiscordMessage) {
         const nouns: string[] = await this.wordSmith.getNouns(message.cleanContent);
         if (nouns.length === 0) return;
-        const buttNoun: string =
-            nouns[Math.floor(Math.random() * nouns.length)];
-        const buttMessage: string = cleanContent.replace(
-            buttNoun,
-            'butt'
-        );
+        const buttNoun: string = nouns[Math.floor(Math.random() * nouns.length)];
+        const buttMessage: string = cleanContent.replace(buttNoun, 'butt');
         return `<@${message.author.id}> ${buttMessage}`;
     }
 }

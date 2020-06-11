@@ -4,14 +4,14 @@ import { DiscordClient } from 'src/discord/discord-client';
 import { TriggeredEvent, ReplyWithReturn } from 'src/common/decorators';
 
 @Injectable()
-export class EdfService implements TriggeredEventService{
+export class EdfService implements TriggeredEventService {
     constructor(client: DiscordClient) {
-        client.addTriggerEventListener(this.response);
+        client.addTriggerEvent(this.response);
     }
 
-    @TriggeredEvent((msg) => msg.toLowerCase().includes('edf'))
+    @TriggeredEvent(msg => msg.toLowerCase().includes('edf'))
     @ReplyWithReturn()
     public response() {
-        return 'EDF! EDF!! EDF!!!'
+        return 'EDF! EDF!! EDF!!!';
     }
 }

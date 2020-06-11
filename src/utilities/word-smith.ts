@@ -5,7 +5,6 @@ import { Injectable } from '@nestjs/common';
 const WordPOS = require('wordpos');
 const wordpos = new WordPOS();
 
-
 @Injectable()
 export class WordSmith {
     public async getNouns(str: string): Promise<string[]> {

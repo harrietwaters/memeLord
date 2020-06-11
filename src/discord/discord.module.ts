@@ -5,6 +5,6 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
     imports: [ConfigModule.forRoot()],
     providers: [DiscordClient],
-    exports: [DiscordClient],
+    exports: [DiscordClient]
 })
 export class DiscordModule {}

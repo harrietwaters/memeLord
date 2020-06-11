@@ -6,11 +6,11 @@ import { TriggeredEventService } from 'src/common/types';
 @Injectable()
 export class MrTrumpService implements TriggeredEventService {
     constructor(client: DiscordClient) {
-        client.addTriggerEventListener(this.response);
+        client.addTriggerEvent(this.response);
     }
 
     @TriggeredEvent('trump')
     public async response(cleanContent: string, message: DiscordMessage): Promise<void> {
-        await message.react('🇺🇸')
+        await message.react('🇺🇸');
     }
 }

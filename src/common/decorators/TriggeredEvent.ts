@@ -1,17 +1,13 @@
 import { DiscordMessage } from 'src/discord/discord-client';
 
 type TesterFunction = (msg: string) => boolean | Promise<boolean>;
-type TesterString = string
-type TesterStrings = Array<string>
+type TesterString = string;
+type TesterStrings = Array<string>;
 
-type Tester = TesterFunction | TesterString | TesterStrings
+type Tester = TesterFunction | TesterString | TesterStrings;
 
 export function TriggeredEvent(test?: Tester) {
-    return function decorator(
-        target,
-        propertyKey: string,
-        descriptor: PropertyDescriptor
-    ) {
+    return function decorator(target, propertyKey: string, descriptor: PropertyDescriptor) {
         const original = descriptor.value;
 
         if (typeof original === 'function') {
@@ -29,7 +25,7 @@ export function TriggeredEvent(test?: Tester) {
                         passes = await test(message.cleanContent);
                         break;
                     case 'object':
-                        if (Array.isArray(test)){
+                        if (Array.isArray(test)) {
                             passes = test.some((str: string) => lowerMsg.includes(str.toLowerCase()));
                         }
                         break;
@@ -39,7 +35,7 @@ export function TriggeredEvent(test?: Tester) {
                 }
 
                 if (passes) {
-                    await original.apply(this, [message.cleanContent, ...args]);
+                    return () => original.apply(this, [message.cleanContent, ...args]);
                 }
             };
         }
