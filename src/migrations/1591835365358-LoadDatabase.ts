@@ -96,8 +96,8 @@ export class LoadDatabase1591835365358 implements MigrationInterface {
                     isNullable: false
                 },
                 {
-                    name: 'integer',
-                    type: 'dateTime',
+                    name: 'dateTime',
+                    type: 'integer',
                     isNullable: false
                 }
             ]
