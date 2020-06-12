@@ -27,7 +27,7 @@ export class MemeCrimeService {
         }
 
         const memeCrimeVictim: ShitPost = await shitPostRepository.findOne({
-            select: ['author', 'imageHash'],
+            select: ['authorId', 'imageHash'],
             where: {
                 imageHash: In(Array.from(hashMap.keys())),
                 // A half second window is left open for meme crimes
@@ -46,7 +46,7 @@ export class MemeCrimeService {
             .setColor('#ff001e')
             .setTitle('A MEME CRIME HAS BEEN COMITTED')
             .setDescription(`<@${message.author.id}> HAS COMMITTED A GRAVE SIN`)
-            .addField('THE AGGRIVED PARTY', `<@${memeCrimeVictim.author}>`, true)
+            .addField('THE AGGRIVED PARTY', `<@${memeCrimeVictim.authorId}>`, true)
             .setImage(hashMap.get(memeCrimeVictim.imageHash).url);
 
         await message.channel.send(embed);

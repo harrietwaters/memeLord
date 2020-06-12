@@ -20,7 +20,7 @@ export class SaveShitPostService {
         await Promise.all(
             message.attachments.map(async m => {
                 return shitPostRepository.insert({
-                    author: message.author.id,
+                    authorId: message.author.id,
                     messageContent: message.cleanContent,
                     imageHash: await this.hasher.hashAttachment(m)
                 });
