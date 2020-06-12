@@ -6,7 +6,7 @@ export class ShitPost {
     id: number;
 
     @Column()
-    author: string;
+    authorId: string;
 
     @Column()
     messageContent: string;
