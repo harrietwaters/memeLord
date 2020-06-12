@@ -11,12 +11,11 @@ export class ShitPost {
     @Column()
     messageContent: string;
 
-    @Column('datetime')
     @Column({
         type: 'int',
         default: () => Date.now()
     })
-    dateTime: string;
+    dateTime: number;
 
     @Column()
     imageHash: string;

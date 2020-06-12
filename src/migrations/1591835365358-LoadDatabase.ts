@@ -41,7 +41,7 @@ export class LoadDatabase1591835365358 implements MigrationInterface {
                 },
                 {
                     name: 'lateHatTime',
-                    type: 'datetime',
+                    type: 'integer',
                     isNullable: false
                 },
                 {
@@ -96,7 +96,7 @@ export class LoadDatabase1591835365358 implements MigrationInterface {
                     isNullable: false
                 },
                 {
-                    name: 'datetime',
+                    name: 'integer',
                     type: 'dateTime',
                     isNullable: false
                 }
