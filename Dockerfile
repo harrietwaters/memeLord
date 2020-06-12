@@ -1,13 +1,12 @@
 FROM node:12 AS builder
 WORKDIR /app
 COPY ./package.json ./
-RUN npm install
+RUN npm install --prod
 COPY . .
 RUN npm run build
 
 FROM node:12
 WORKDIR /app
 COPY --from=builder /app ./
-RUN npm run typeorm:migrate
 EXPOSE 3000
 CMD ["npm", "run", "start:prod"]
