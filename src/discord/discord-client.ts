@@ -27,10 +27,17 @@ export class DiscordClient implements OnModuleInit {
 
     public async onModuleInit() {
         await this.login();
+        this.listenForErrors()
     }
 
     private login(): Promise<string> {
         return this.client.login(this.configService.get<string>('CLIENT_TOKEN'));
+    }
+
+    private listenForErrors(): void {
+        this.client.on('error', err => {
+            console.dir(err, { depth: 5 });
+        });
     }
 
     public addCommandEvent(listener: any): void {
@@ -49,7 +56,7 @@ export class DiscordClient implements OnModuleInit {
     }
 
     private async handleMessages(message: Discord.Message): Promise<void> {
-        console.log(`Received message: ${message.cleanContent}`)
+        console.log(`Received message: ${message.cleanContent}`);
         for await (const exec of getExec(message, this.commands)) {
             if (exec) return exec(message);
         }

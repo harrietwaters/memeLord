@@ -39,6 +39,6 @@ import { SaveShitPostService } from './save-shit-post/save-shit-post.service';
 })
 export class TriggeredEventsModule implements OnModuleInit {
     onModuleInit() {
-        console.log('Triggered Events module loaded')
+        console.log('Triggered Events module loaded');
     }
 }
