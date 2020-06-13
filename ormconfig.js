@@ -4,6 +4,6 @@ module.exports = {
     database: 'db/database2.sqlite',
     migrations: ['dist/migrations/*.js'],
     migrationsTableName: 'typeorm_migrations',
-    entities: ["dist/**/*.entity{.ts,.js}"],
+    entities: ['dist/**/*.entity{.ts,.js}'],
     cli: { migrationsDir: 'src/migrations' },
 }
