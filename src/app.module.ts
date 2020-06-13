@@ -21,8 +21,9 @@ import { HealthController } from './health/health.controller';
         CommandsModule,
         TriggeredEventsModule,
         UtilitiesModule,
-        TypeOrmModule.forFeature([ShitPost, MemeHouse, Point, SortingHatUser]),
-        TypeOrmModule.forRoot(),
+        TypeOrmModule.forRoot({
+            entities: [ShitPost, MemeHouse, Point, SortingHatUser]
+        }),
         TerminusModule,
     ],
     controllers: [AppController, HealthController],
