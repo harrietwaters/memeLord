@@ -46,7 +46,7 @@ export class LoadDatabase1591835365358 implements MigrationInterface {
                 },
                 {
                     name: 'memeHouseId',
-                    type: 'varchar',
+                    type: 'integer',
                     isNullable: false
                 }
             ]
