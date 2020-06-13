@@ -15,7 +15,7 @@ steps:
   args:
   - 'run'
   - 'deploy'
-  - 'memelord'
+  - 'memelord-2'
   - '--image'
   - 'gcr.io/$PROJECT_ID/memelord2:$COMMIT_SHA'
   - '--region'
