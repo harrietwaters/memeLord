@@ -17,7 +17,9 @@ import { HealthController } from './health/health.controller';
         CommandsModule,
         TriggeredEventsModule,
         UtilitiesModule,
-        TypeOrmModule.forRoot(),
+        TypeOrmModule.forRoot({
+            autoLoadEntities: true
+        }),
         TerminusModule,
     ],
     controllers: [AppController, HealthController],
