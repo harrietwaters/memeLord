@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { TerminusModule} from '@nestjs/terminus';
+import { TerminusModule } from '@nestjs/terminus';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
@@ -20,7 +20,7 @@ import { HealthController } from './health/health.controller';
         TypeOrmModule.forRoot({
             autoLoadEntities: true
         }),
-        TerminusModule,
+        TerminusModule
     ],
     controllers: [AppController, HealthController],
     providers: [AppService],

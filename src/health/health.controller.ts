@@ -3,16 +3,11 @@ import { HealthCheck, DNSHealthIndicator, HealthCheckService } from '@nestjs/ter
 
 @Controller('health')
 export class HealthController {
-  constructor(
-    private health: HealthCheckService,
-    private dns: DNSHealthIndicator,
-  ) {}
+    constructor(private health: HealthCheckService, private dns: DNSHealthIndicator) {}
 
-  @Get()
-  @HealthCheck()
-  check() {
-    return this.health.check([
-      () => this.dns.pingCheck('dilbert', 'https://dilbert.com'),
-    ]);
-  }
+    @Get()
+    @HealthCheck()
+    check() {
+        return this.health.check([() => this.dns.pingCheck('dilbert', 'https://dilbert.com')]);
+    }
 }

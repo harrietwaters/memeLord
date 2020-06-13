@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 
-import { DiscordClient, DiscordMessage } from 'src/discord/discord-client';
-import { IgnoreMemeLord } from 'src/common/decorators';
-import { Hasher } from 'src/utilities/hasher';
+import { DiscordClient, DiscordMessage } from '../../discord/discord-client';
+import { IgnoreMemeLord } from '../../common/decorators';
+import { Hasher } from '../../utilities/hasher';
 import { getRepository } from 'typeorm';
-import { ShitPost } from 'src/models/shit-post.entity';
+import { ShitPost } from '../../models/shit-post.entity';
 
 @Injectable()
 export class SaveShitPostService {

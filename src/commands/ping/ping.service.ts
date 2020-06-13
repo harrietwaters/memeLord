@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { DiscordClient } from 'src/discord/discord-client';
-import { Command, ReplyWithReturn } from 'src/common/decorators';
+import { DiscordClient } from '../../discord/discord-client';
+import { Command, ReplyWithReturn } from '../../common/decorators';
 
 @Injectable()
 export class PingService {

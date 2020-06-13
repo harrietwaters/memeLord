@@ -1,5 +1,5 @@
 import * as Discord from 'discord.js';
-import { DiscordMessage } from 'src/discord/discord-client';
+import { DiscordMessage } from '../../discord/discord-client';
 
 // Triggered Events
 export interface ComplexResponse {

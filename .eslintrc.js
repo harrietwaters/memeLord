@@ -21,7 +21,7 @@ module.exports = {
     '@typescript-eslint/no-inferrable-types': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/array-type': 'array-simple',
+    '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/no-unused-vars': ["error", { argsIgnorePattern: "^_"}]
   },
 };

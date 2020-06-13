@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { GundamLikeService } from './gundam-like/gundam-like.service';
-import { DiscordModule } from 'src/discord/discord.module';
+import { DiscordModule } from '../discord/discord.module';
 import { ButtBotService } from './butt-bot/butt-bot.service';
 import { CoolAbedService } from './cool-abed/cool-abed.service';
 import { DontAtMeService } from './dont-at-me/dont-at-me.service';
@@ -13,7 +13,7 @@ import { WarrenSnakeService } from './warren-snake/warren-snake.service';
 import { WontDoService } from './wont-do/wont-do.service';
 import { SpongebobService } from './spongebob/spongebob.service';
 import { StudyBladeService } from './study-blade/study-blade.service';
-import { UtilitiesModule } from 'src/utilities/utilities.module';
+import { UtilitiesModule } from '../utilities/utilities.module';
 import { MemeCrimeService } from './meme-crime/meme-crime.service';
 import { SaveShitPostService } from './save-shit-post/save-shit-post.service';
 

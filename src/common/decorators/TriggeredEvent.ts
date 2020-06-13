@@ -1,4 +1,4 @@
-import { DiscordMessage } from 'src/discord/discord-client';
+import { DiscordMessage } from '../../discord/discord-client';
 
 type TesterFunction = (msg: string) => boolean | Promise<boolean>;
 type TesterString = string;

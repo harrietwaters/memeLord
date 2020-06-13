@@ -1,8 +1,8 @@
 import * as Canvas from 'canvas';
 import { Injectable } from '@nestjs/common';
-import { DiscordClient, DiscordMessage } from 'src/discord/discord-client';
-import { TriggeredEvent, Odds, ReplyWithReturn } from 'src/common/decorators';
-import { TriggeredEventService } from 'src/common/types';
+import { DiscordClient, DiscordMessage } from '../../discord/discord-client';
+import { TriggeredEvent, Odds, ReplyWithReturn } from '../../common/decorators';
+import { TriggeredEventService } from '../../common/types';
 
 @Injectable()
 export class SpongebobService implements TriggeredEventService {

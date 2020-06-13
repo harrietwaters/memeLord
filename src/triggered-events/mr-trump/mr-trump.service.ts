@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { DiscordMessage, DiscordClient } from 'src/discord/discord-client';
-import { TriggeredEvent } from 'src/common/decorators';
-import { TriggeredEventService } from 'src/common/types';
+import { DiscordMessage, DiscordClient } from '../../discord/discord-client';
+import { TriggeredEvent } from '../../common/decorators';
+import { TriggeredEventService } from '../../common/types';
 
 @Injectable()
 export class MrTrumpService implements TriggeredEventService {

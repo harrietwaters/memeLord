@@ -1,14 +1,12 @@
 import { Injectable } from '@nestjs/common';
-// TODO: Move import to client
-import * as Discord from 'discord.js';
 import * as Canvas from 'canvas';
 
-import { DiscordClient, DiscordMessage } from 'src/discord/discord-client';
-import { Command, ReplyWithReturn } from 'src/common/decorators';
-import { MemeHouse } from 'src/models/meme-house.entity';
-import { SortingHatUser } from 'src/models/sorting-hat-user.entity';
+import { DiscordClient, DiscordMessage } from '../../discord/discord-client';
+import { Command, ReplyWithReturn } from '../../common/decorators';
+import { MemeHouse } from '../../models/meme-house.entity';
+import { SortingHatUser } from '../../models/sorting-hat-user.entity';
 import { getRepository } from 'typeorm';
-import { ComplexResponse } from 'src/common/types';
+import { ComplexResponse } from '../../common/types';
 
 @Injectable()
 export class PutOnHatService {

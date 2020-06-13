@@ -1,8 +1,8 @@
-import { DiscordMessage, DiscordClient } from 'src/discord/discord-client';
-import { Odds, TriggeredEvent, ReplyWithReturn } from 'src/common/decorators';
-import { TriggeredEventService } from 'src/common/types';
+import { DiscordMessage, DiscordClient } from '../../discord/discord-client';
+import { Odds, TriggeredEvent, ReplyWithReturn } from '../../common/decorators';
+import { TriggeredEventService } from '../../common/types';
 import { Injectable } from '@nestjs/common';
-import { WordSmith } from 'src/utilities/word-smith';
+import { WordSmith } from '../../utilities/word-smith';
 
 @Injectable()
 export class ButtBotService implements TriggeredEventService {

@@ -2,118 +2,134 @@ import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm
 
 export class LoadDatabase1591835365358 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.createTable(new Table({
-            name: 'point',
-            columns: [
-                {
-                    name: 'id',
-                    type: 'int',
-                    isPrimary: true,
-                    isGenerated: true
-                },
-                {
-                    name: 'authorId',
-                    type: 'varchar',
-                    isNullable: false
-                },
-                {
-                    name: 'messageId',
-                    type: 'varchar',
-                    isNullable: false
-                },
-                {
-                    name: 'point',
-                    type: 'int',
-                    isNullable: false
-                }
-            ]
-        }), true);
+        await queryRunner.createTable(
+            new Table({
+                name: 'point',
+                columns: [
+                    {
+                        name: 'id',
+                        type: 'int',
+                        isPrimary: true,
+                        isGenerated: true
+                    },
+                    {
+                        name: 'authorId',
+                        type: 'varchar',
+                        isNullable: false
+                    },
+                    {
+                        name: 'messageId',
+                        type: 'varchar',
+                        isNullable: false
+                    },
+                    {
+                        name: 'point',
+                        type: 'int',
+                        isNullable: false
+                    }
+                ]
+            }),
+            true
+        );
 
-        await queryRunner.createTable(new Table({
-            name: 'sorting_hat_user',
-            columns: [
-                {
-                    name: 'authorId',
-                    type: 'varchar',
-                    isNullable: false,
-                    isPrimary: true,
+        await queryRunner.createTable(
+            new Table({
+                name: 'sorting_hat_user',
+                columns: [
+                    {
+                        name: 'authorId',
+                        type: 'varchar',
+                        isNullable: false,
+                        isPrimary: true
+                    },
+                    {
+                        name: 'lateHatTime',
+                        type: 'bigint',
+                        isNullable: false
+                    },
+                    {
+                        name: 'memeHouseId',
+                        type: 'integer',
+                        isNullable: false
+                    }
+                ]
+            }),
+            true
+        );
 
-                },
-                {
-                    name: 'lateHatTime',
-                    type: 'bigint',
-                    isNullable: false
-                },
-                {
-                    name: 'memeHouseId',
-                    type: 'integer',
-                    isNullable: false
-                }
-            ]
-        }), true);
+        await queryRunner.createTable(
+            new Table({
+                name: 'meme_house',
+                columns: [
+                    {
+                        name: 'id',
+                        type: 'int',
+                        isPrimary: true,
+                        isGenerated: true
+                    },
+                    {
+                        name: 'name',
+                        type: 'varchar',
+                        isNullable: false
+                    },
+                    {
+                        name: 'houseImage',
+                        type: 'varchar',
+                        isNullable: false
+                    }
+                ]
+            }),
+            true
+        );
 
-        await queryRunner.createTable(new Table({
-            name: 'meme_house',
-            columns: [
-                {
-                    name: 'id',
-                    type: 'int',
-                    isPrimary: true,
-                    isGenerated: true
-                },
-                {
-                    name: 'name',
-                    type: 'varchar',
-                    isNullable: false
-                },
-                {
-                    name: 'houseImage',
-                    type: 'varchar',
-                    isNullable: false
-                }
-            ]
-        }), true);
+        await queryRunner.createTable(
+            new Table({
+                name: 'shit_post',
+                columns: [
+                    {
+                        name: 'id',
+                        type: 'int',
+                        isPrimary: true,
+                        isGenerated: true
+                    },
+                    {
+                        name: 'author',
+                        type: 'varchar',
+                        isNullable: false,
+                        isPrimary: true
+                    },
+                    {
+                        name: 'messagaContent',
+                        type: 'varchar',
+                        isNullable: false
+                    },
+                    {
+                        name: 'dateTime',
+                        type: 'integer',
+                        isNullable: false
+                    }
+                ]
+            }),
+            true
+        );
 
-        await queryRunner.createTable(new Table({
-            name: 'shit_post',
-            columns: [
-                {
-                    name: 'id',
-                    type: 'int',
-                    isPrimary: true,
-                    isGenerated: true
-                },
-                {
-                    name: 'author',
-                    type: 'varchar',
-                    isNullable: false,
-                    isPrimary: true,
+        await queryRunner.createForeignKey(
+            'point',
+            new TableForeignKey({
+                columnNames: ['authorId'],
+                referencedColumnNames: ['authorId'],
+                referencedTableName: 'sorting_hat_user'
+            })
+        );
 
-                },
-                {
-                    name: 'messagaContent',
-                    type: 'varchar',
-                    isNullable: false
-                },
-                {
-                    name: 'dateTime',
-                    type: 'integer',
-                    isNullable: false
-                }
-            ]
-        }), true);
-
-        await queryRunner.createForeignKey("point", new TableForeignKey({
-            columnNames: ["authorId"],
-            referencedColumnNames: ["authorId"],
-            referencedTableName: "sorting_hat_user",
-        }));
-
-        await queryRunner.createForeignKey("sorting_hat_user", new TableForeignKey({
-            columnNames: ["memeHouseId"],
-            referencedColumnNames: ["id"],
-            referencedTableName: "meme_house",
-        }));
+        await queryRunner.createForeignKey(
+            'sorting_hat_user',
+            new TableForeignKey({
+                columnNames: ['memeHouseId'],
+                referencedColumnNames: ['id'],
+                referencedTableName: 'meme_house'
+            })
+        );
 
         await queryRunner.query(`INSERT INTO meme_house VALUES(1,'House Toblerone','toblerone.jpeg')`);
         await queryRunner.query(`INSERT INTO meme_house VALUES(2,'House Dat Boi','datBoi.jpeg')`);
@@ -132,5 +148,6 @@ export class LoadDatabase1591835365358 implements MigrationInterface {
         await queryRunner.query(`INSERT INTO sorting_hat_user VALUES('689527478099640358',1585663937955,3)`);
     }
 
-    public async down(queryRunner: QueryRunner): Promise<void> {}
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    public async down(): Promise<void> {}
 }

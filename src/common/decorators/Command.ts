@@ -1,5 +1,5 @@
 import { zip } from 'lodash';
-import { DiscordMessage } from 'src/discord/discord-client';
+import { DiscordMessage } from '../../discord/discord-client';
 import { CommandArgs } from '../types';
 
 function printHelp(commandName: string, commandArgs: CommandArgs) {

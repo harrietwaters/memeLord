@@ -2,10 +2,10 @@ import * as Canvas from 'canvas';
 import { shuffle } from 'lodash';
 import { Injectable } from '@nestjs/common';
 
-import { DiscordClient, DiscordMessage } from 'src/discord/discord-client';
-import { Odds, TriggeredEvent, ReplyWithReturn } from 'src/common/decorators';
-import { WordSmith } from 'src/utilities/word-smith';
-import { ComplexResponse, TriggeredEventService } from 'src/common/types';
+import { DiscordClient, DiscordMessage } from '../../discord/discord-client';
+import { Odds, TriggeredEvent, ReplyWithReturn } from '../../common/decorators';
+import { WordSmith } from '../../utilities/word-smith';
+import { ComplexResponse, TriggeredEventService } from '../../common/types';
 
 @Injectable()
 export class StudyBladeService implements TriggeredEventService {

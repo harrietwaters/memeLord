@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { DiscordClient } from 'src/discord/discord-client';
-import { TriggeredEvent, ReplyWithReturn } from 'src/common/decorators';
-import { TriggeredEventService } from 'src/common/types';
+import { DiscordClient } from '../../discord/discord-client';
+import { TriggeredEvent, ReplyWithReturn } from '../../common/decorators';
+import { TriggeredEventService } from '../../common/types';
 
 @Injectable()
 export class SmolDogService implements TriggeredEventService {

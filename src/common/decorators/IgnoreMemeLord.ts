@@ -1,4 +1,4 @@
-import { DiscordMessage } from 'src/discord/discord-client';
+import { DiscordMessage } from '../../discord/discord-client';
 
 export function IgnoreMemeLord() {
     return function decorator(target, propertyKey: string, descriptor: PropertyDescriptor) {

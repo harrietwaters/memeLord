@@ -1,9 +1,9 @@
-import { Injectable, Inject } from '@nestjs/common';
-import { DiscordClient, DiscordMessage } from 'src/discord/discord-client';
-import { Command, ReplyWithReturn } from 'src/common/decorators';
-import { getRepository, Repository } from 'typeorm';
-import { MemeHouse } from 'src/models/meme-house.entity';
-import { CommandService } from 'src/common/types';
+import { Injectable } from '@nestjs/common';
+import { DiscordClient, DiscordMessage } from '../../discord/discord-client';
+import { Command, ReplyWithReturn } from '../../common/decorators';
+import { getRepository } from 'typeorm';
+import { MemeHouse } from '../../models/meme-house.entity';
+import { CommandService } from '../../common/types';
 
 @Injectable()
 export class ListHousesService implements CommandService {
@@ -24,6 +24,7 @@ export class ListHousesService implements CommandService {
             let userList: string = '';
 
             for (const user of users) {
+                // es-lint
                 // @ts-ignore
                 const snowflake = await message.client.users.resolveID(user.authorId);
 

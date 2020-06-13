@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { Command, ReplyWithReturn } from 'src/common/decorators';
-import { DiscordClient, DiscordMessage } from 'src/discord/discord-client';
-import { CommandService } from 'src/common/types';
+import { Command, ReplyWithReturn } from '../../common/decorators';
+import { DiscordClient, DiscordMessage } from '../../discord/discord-client';
+import { CommandService } from '../../common/types';
 
 function getRoller(die, faces) {
     return function*() {
