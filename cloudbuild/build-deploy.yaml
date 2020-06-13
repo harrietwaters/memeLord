@@ -11,14 +11,5 @@ steps:
   args: ['push', 'gcr.io/$PROJECT_ID/memelord2:$COMMIT_SHA']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/$PROJECT_ID/memelord2']
-- name: 'gcr.io/cloud-builders/gcloud'
-  args:
-  - 'run'
-  - 'deploy'
-  - 'memelord-2'
-  - '--image'
-  - 'gcr.io/$PROJECT_ID/memelord2:$COMMIT_SHA'
-  - '--region'
-  - 'us-central1'
-  - '--platform'
-  - 'managed'
+- name: gcr.io/cloud-builders/gcloud
+  args: [ compute, instance-groups, managed, rolling-action, restart, memelord-group, --zone=us-central1-a ]
