@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, OnModuleInit } from '@nestjs/common';
 import { GundamLikeService } from './gundam-like/gundam-like.service';
 import { DiscordModule } from '../discord/discord.module';
 import { ButtBotService } from './butt-bot/butt-bot.service';
@@ -37,4 +37,8 @@ import { SaveShitPostService } from './save-shit-post/save-shit-post.service';
     ],
     imports: [DiscordModule, UtilitiesModule]
 })
-export class TriggeredEventsModule {}
+export class TriggeredEventsModule implements OnModuleInit {
+    onModuleInit() {
+        console.log('Triggered Events module loaded')
+    }
+}

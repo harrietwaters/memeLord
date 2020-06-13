@@ -43,7 +43,6 @@ export class DiscordClient implements OnModuleInit {
 
     public addListener<K extends keyof Discord.ClientEvents>(
         event: K,
-        // TODO: Type this
         listener: (...args: Discord.ClientEvents[K]) => any
     ): void {
         this.client.on(event, listener);

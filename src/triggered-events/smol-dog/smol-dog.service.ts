@@ -6,7 +6,6 @@ import { TriggeredEventService } from '../../common/types';
 @Injectable()
 export class SmolDogService implements TriggeredEventService {
     constructor(client: DiscordClient) {
-        console.log();
         client.addTriggerEvent(this.response);
     }
 
