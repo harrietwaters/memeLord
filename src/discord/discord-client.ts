@@ -50,6 +50,7 @@ export class DiscordClient implements OnModuleInit {
     }
 
     private async handleMessages(message: Discord.Message): Promise<void> {
+        console.log(`Received message: ${message.cleanContent}`)
         for await (const exec of getExec(message, this.commands)) {
             if (exec) return exec(message);
         }
