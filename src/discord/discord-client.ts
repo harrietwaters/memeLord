@@ -1,6 +1,7 @@
 import * as Discord from 'discord.js';
 import { ConfigService } from '@nestjs/config';
 import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Logger } from 'nestjs-pino';
 
 export type DiscordMessage = Discord.Message;
 
@@ -15,19 +16,21 @@ async function* getExec(message: DiscordMessage, commands: Array<any>) {
 export class DiscordClient implements OnModuleInit {
     private readonly client: Discord.Client;
     private readonly configService: ConfigService;
+    private readonly logger: Logger;
     // TODO Type these
     private readonly commands: Array<any> = [];
     private readonly triggeredEvents: Array<any> = [];
 
-    constructor(configService: ConfigService) {
+    constructor(configService: ConfigService, logger: Logger) {
         this.client = new Discord.Client();
         this.client.on('message', this.handleMessages.bind(this));
         this.configService = configService;
+        this.logger = logger;
     }
 
     public async onModuleInit() {
         await this.login();
-        this.listenForErrors()
+        this.listenForErrors();
     }
 
     private login(): Promise<string> {
@@ -36,7 +39,7 @@ export class DiscordClient implements OnModuleInit {
 
     private listenForErrors(): void {
         this.client.on('error', err => {
-            console.dir(err, { depth: 5 });
+            this.logger.error(err);
         });
     }
 
@@ -56,7 +59,6 @@ export class DiscordClient implements OnModuleInit {
     }
 
     private async handleMessages(message: Discord.Message): Promise<void> {
-        console.log(`Received message: ${message.cleanContent}`);
         for await (const exec of getExec(message, this.commands)) {
             if (exec) return exec(message);
         }

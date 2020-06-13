@@ -36,6 +36,7 @@
     "erlpack": "github:discordapp/erlpack",
     "lodash": "^4.17.15",
     "module": "^1.2.5",
+    "nestjs-pino": "^1.2.0",
     "pg": "^8.2.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

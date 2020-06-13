@@ -9,12 +9,14 @@ import { CommandsModule } from './commands/commands.module';
 import { TriggeredEventsModule } from './triggered-events/triggered-events.module';
 import { UtilitiesModule } from './utilities/utilities.module';
 import { HealthController } from './health/health.controller';
+import { LoggerModule } from 'nestjs-pino';
 
 @Module({
     imports: [
         ConfigModule.forRoot(),
         DiscordModule,
         CommandsModule,
+        LoggerModule.forRoot(),
         TriggeredEventsModule,
         UtilitiesModule,
         TypeOrmModule.forRoot({
