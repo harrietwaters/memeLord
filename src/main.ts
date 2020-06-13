@@ -10,7 +10,7 @@ async function bootstrap() {
     console.log('READY TO MEME!')
     const connectionOptions = await getConnectionOptions();
     console.dir(connectionOptions, { depth: 10});
-    const dirContents = readdirSync(join('dist/src/models'))
+    const dirContents = readdirSync(join(process.env.SCAN_DIR))
     console.dir(dirContents, { depth: 10});
 
 }
