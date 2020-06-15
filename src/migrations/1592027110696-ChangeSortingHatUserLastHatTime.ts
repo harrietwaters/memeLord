@@ -13,5 +13,7 @@ export class ChangeSortingHatUserLastHatTime1592027110696 implements MigrationIn
         );
     }
 
-    public async down(): Promise<void> {}
+    public async down(): Promise<void> {
+        // This is empty on purpose
+    }
 }
