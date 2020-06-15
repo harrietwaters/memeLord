@@ -32,10 +32,10 @@ export class MemeCrimeService {
                 imageHash: In(Array.from(hashMap.keys())),
                 // A half second window is left open for meme crimes
                 // This will be important for any planned meme heists
-                dateTime: LessThan(Date.now() - 500)
+                datetime: LessThan(Date.now() - 500)
             },
             order: {
-                dateTime: 'DESC'
+                datetime: 'DESC'
             }
         });
 

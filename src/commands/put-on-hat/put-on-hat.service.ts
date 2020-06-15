@@ -57,7 +57,7 @@ export class PutOnHatService {
 
         if (user == null) {
             // If the user didn't already exist - create them
-            await sortingHatUserRepository.insert({
+            await sortingHatUserRepository.save({
                 authorId: message.author.id,
                 memeHouseId: newHouse.id
             });
