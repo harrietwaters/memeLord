@@ -1,17 +1,18 @@
-import { Column, PrimaryColumn, Entity, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
+import { Column, PrimaryColumn, Entity, ManyToOne, JoinColumn, OneToMany, BeforeInsert } from 'typeorm';
 import { MemeHouse } from './meme-house.entity';
 import { Point } from './point.entity';
 
 @Entity()
 export class SortingHatUser {
+    @BeforeInsert()
+    private setTime(): void {
+        this.lastSortTime = Date.now();
+    }
+
     @PrimaryColumn()
     authorId: string;
 
-    @Column('datetime')
-    @Column({
-        type: 'int',
-        default: () => Date.now()
-    })
+    @Column('bigint')
     lastSortTime: number;
 
     @Column()

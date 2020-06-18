@@ -1,8 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, BeforeInsert } from 'typeorm';
 import { SortingHatUser } from './sorting-hat-user.entity';
 
 @Entity()
 export class Point {
+    @BeforeInsert()
+    private setPoint(): void {
+        this.point = Math.ceil(Math.random() * 1000);
+    }
+
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -12,10 +17,7 @@ export class Point {
     @Column()
     messageId: string;
 
-    @Column({
-        type: 'int',
-        default: () => Math.ceil(Math.random() * 1000)
-    })
+    @Column('int')
     point: number;
 
     @ManyToOne(
