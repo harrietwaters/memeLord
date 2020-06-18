@@ -20,11 +20,12 @@ export class SaveShitPostService {
         const shitPostRepository = getRepository(ShitPost);
         await Promise.all(
             message.attachments.map(async m => {
-                shitPostRepository.save({
+                const shitPost = shitPostRepository.create({
                     authorId: message.author.id,
                     messageContent: message.cleanContent,
                     imageHash: await this.hasher.hashAttachment(m)
                 });
+                return shitPostRepository.save(shitPost);
             })
         );
     }

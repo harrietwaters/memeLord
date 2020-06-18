@@ -56,11 +56,13 @@ export class PutOnHatService {
         });
 
         if (user == null) {
-            // If the user didn't already exist - create them
-            await sortingHatUserRepository.save({
+            const user = sortingHatUserRepository.create({
                 authorId: message.author.id,
                 memeHouseId: newHouse.id
             });
+
+            // If the user didn't already exist - create them
+            await sortingHatUserRepository.save(user);
         } else {
             // If the user does exist - lets make sure that they're waited 1 day before asking
             const DAY_IN_MILLISECONDS = 86400000;
