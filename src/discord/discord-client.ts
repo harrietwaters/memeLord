@@ -2,6 +2,7 @@ import * as Discord from 'discord.js';
 import { ConfigService } from '@nestjs/config';
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { Logger } from 'nestjs-pino';
+import { IgnoreMemeLord } from 'src/common/decorators';
 
 export type DiscordMessage = Discord.Message;
 
@@ -58,6 +59,7 @@ export class DiscordClient implements OnModuleInit {
         this.client.on(event, listener);
     }
 
+    @IgnoreMemeLord()
     private async handleMessages(message: Discord.Message): Promise<void> {
         for await (const exec of getExec(message, this.commands)) {
             if (exec) return exec(message);

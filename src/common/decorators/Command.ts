@@ -15,9 +15,16 @@ export function Command(commandName: string, commandArgs?: CommandArgs) {
             descriptor.value = async function(...args) {
                 const message: DiscordMessage = args[0];
 
-                const userArgs = message.cleanContent.split(/\s+/);
+                if (!message.cleanContent.startsWith(commandName)) return;
 
-                if (!userArgs.shift().startsWith(commandName)) return;
+                const argRegExp = RegExp(/['].*?[']|["].*?["]|[`].*?[`]|[^\s]+/, 'g');
+
+                let results: string[];
+                const userArgs: string[] = [];
+                while ((results = argRegExp.exec(message.cleanContent)) != null) {
+                    userArgs.push(results[0]);
+                }
+                userArgs.shift();
 
                 try {
                     let parsedArgs: Array<number | string> = [];
@@ -25,6 +32,11 @@ export function Command(commandName: string, commandArgs?: CommandArgs) {
                         parsedArgs = zip(userArgs, commandArgs).map(([userArg, commandArg]) => {
                             switch (commandArg.type) {
                                 case 'string':
+                                    const quotes = RegExp(/^['"`].*?['"`]$/);
+
+                                    if (quotes.test(userArg)) {
+                                        userArg = userArg.slice(1, userArg.length - 1);
+                                    }
                                     return userArg;
                                 case 'number':
                                     const parsedInt = parseInt(userArg);
@@ -38,7 +50,7 @@ export function Command(commandName: string, commandArgs?: CommandArgs) {
                     }
                     return () => original.apply(this, [parsedArgs, ...args]);
                 } catch (err) {
-                    printHelp(commandName, commandArgs);
+                    message.reply(printHelp(commandName, commandArgs));
                 }
             };
         }

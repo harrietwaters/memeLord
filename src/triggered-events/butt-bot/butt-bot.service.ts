@@ -9,7 +9,7 @@ export class ButtBotService implements TriggeredEventService {
     private readonly wordSmith: WordSmith;
 
     constructor(client: DiscordClient, wordSmith: WordSmith) {
-        client.addTriggerEvent(this.response);
+        client.addTriggerEvent(this.response.bind(this));
         this.wordSmith = wordSmith;
     }
 
