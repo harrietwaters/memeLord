@@ -17,7 +17,7 @@ export function Command(commandName: string, commandArgs?: CommandArgs) {
 
                 if (!message.cleanContent.startsWith(commandName)) return;
 
-                const argRegExp = RegExp(/['].*?[']|["].*?["]|[`].*?[`]|[^\s]+/, 'g');
+                const argRegExp = RegExp(/ [“].*?[”]|['].*?[']|["].*?["]|[`].*?[`]|[^\s]+/, 'g');
 
                 let results: string[];
                 const userArgs: string[] = [];
