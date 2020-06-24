@@ -15,7 +15,7 @@ export function Command(commandName: string, commandArgs?: CommandArgs) {
             descriptor.value = async function(...args) {
                 const message: DiscordMessage = args[0];
 
-                if (!message.cleanContent.toLowerCase().startsWith(commandName)) return;
+                if (!message.cleanContent.toLowerCase().startsWith(commandName.toLowerCase())) return;
 
                 const argRegExp = RegExp(/ [“].*?[”]|['].*?[']|["].*?["]|[`].*?[`]|[^\s]+/, 'g');
 
