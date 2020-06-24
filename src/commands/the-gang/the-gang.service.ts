@@ -3,17 +3,22 @@ import { Injectable, OnModuleInit } from '@nestjs/common';
 import { DiscordClient, DiscordMessage } from 'src/discord/discord-client';
 import { Command, ReplyWithReturn } from 'src/common/decorators';
 import { ComplexResponse } from 'src/common/types';
+import { Logger } from 'nestjs-pino';
 
 @Injectable()
 export class TheGangService implements OnModuleInit {
     private readonly client: DiscordClient;
+    private readonly logger: Logger;
+
     private readonly maxTextWidth: number = 22;
-    constructor(client: DiscordClient) {
+    constructor(client: DiscordClient, logger: Logger) {
         this.client = client;
         this.client.addCommandEvent(this.response.bind(this));
+        this.logger = logger;
     }
 
     public onModuleInit() {
+        this.logger.log('Adding font: Textile Regular');
         Canvas.registerFont('./fonts/textile-regular/Textile Regular.ttf', {
             family: 'Textile Regular'
         });
@@ -39,7 +44,7 @@ export class TheGangService implements OnModuleInit {
         ctx.fillStyle = '#000000';
         ctx.fillRect(0, 0, 2200, 1400);
 
-        ctx.font = `${textSize}px Textile Regular`;
+        ctx.font = `${textSize}px foo`;
         ctx.fillStyle = '#FFFFFF';
         ctx.textAlign = 'center';
 
