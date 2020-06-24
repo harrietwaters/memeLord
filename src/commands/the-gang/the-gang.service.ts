@@ -1,12 +1,12 @@
 import * as Canvas from 'canvas';
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { DiscordClient, DiscordMessage } from 'src/discord/discord-client';
 import { Command, ReplyWithReturn } from 'src/common/decorators';
 import { ComplexResponse } from 'src/common/types';
 import { Logger } from 'nestjs-pino';
 
 @Injectable()
-export class TheGangService implements OnModuleInit {
+export class TheGangService {
     private readonly client: DiscordClient;
     private readonly logger: Logger;
 
@@ -15,13 +15,6 @@ export class TheGangService implements OnModuleInit {
         this.client = client;
         this.client.addCommandEvent(this.response.bind(this));
         this.logger = logger;
-    }
-
-    public onModuleInit() {
-        this.logger.log('Adding font: Textile Regular');
-        Canvas.registerFont('./fonts/textile-regular/Textile Regular.ttf', {
-            family: 'Textile Regular'
-        });
     }
 
     @Command('!theGang', [{ name: 'text', type: 'string' }])
@@ -37,19 +30,19 @@ export class TheGangService implements OnModuleInit {
             .map(word => (word ? word[0].toUpperCase().concat(word.slice(1)) : ''))
             .join(' ');
 
-        const canvas = Canvas.createCanvas(2200, 1400);
+        const canvas = Canvas.createCanvas(1100, 700);
         const ctx = canvas.getContext('2d');
 
-        const textSize = 148;
+        const textSize = 74;
         ctx.fillStyle = '#000000';
-        ctx.fillRect(0, 0, 2200, 1400);
+        ctx.fillRect(0, 0, 1100, 700);
 
-        ctx.font = `${textSize}px foo`;
+        ctx.font = `${textSize}px Textile Regular`;
         ctx.fillStyle = '#FFFFFF';
         ctx.textAlign = 'center';
 
         const splitText: string[] = this.splitText(`"The Gang ${text}"`);
-        this.formatText(ctx, 1100, 750, splitText, textSize);
+        this.formatText(ctx, 550, 375, splitText, textSize);
 
         return {
             reply: `<@${message.author.id}>`,

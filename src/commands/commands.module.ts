@@ -1,4 +1,5 @@
-import { Module } from '@nestjs/common';
+import * as Canvas from 'canvas';
+import { Module, OnModuleInit } from '@nestjs/common';
 import { PingService } from './ping/ping.service';
 import { DiscordModule } from '../discord/discord.module';
 import { RollDiceService } from './roll-dice/roll-dice.service';
@@ -11,4 +12,10 @@ import { TheGangService } from './the-gang/the-gang.service';
     imports: [DiscordModule],
     providers: [PingService, RollDiceService, PutOnHatService, ListHousesService, DrakeService, TheGangService]
 })
-export class CommandsModule {}
+export class CommandsModule implements OnModuleInit {
+    onModuleInit() {
+        Canvas.registerFont('./fonts/textile-regular/Textile Regular.ttf', {
+            family: 'Textile Regular'
+        });
+    }
+}
