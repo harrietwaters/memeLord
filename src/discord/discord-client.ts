@@ -73,7 +73,10 @@ export class DiscordClient implements OnModuleInit {
                 }
             }
         } catch (err) {
-            this.logger.error(err);
+            this.logger.error({
+                message: 'An error occurred',
+                err: err
+            });
         }
     }
 }
