@@ -18,9 +18,11 @@ export class MemeScoreService {
         if (react.me) return;
         if (message.attachments.size < 1) return;
 
-        await pointRepository.save({
+        const point = pointRepository.create({
             authorId: message.author.id,
             messageId: message.id
         });
+
+        await pointRepository.save(point);
     }
 }
