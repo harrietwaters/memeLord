@@ -9,9 +9,9 @@ export class EdfService implements TriggeredEventService {
         client.addTriggerEvent(this.response);
     }
 
-    @TriggeredEvent(msg => msg.toLowerCase().includes('edf'))
+    @TriggeredEvent('edf')
     @ReplyWithReturn()
-    public response() {
+    public response(): string {
         return 'EDF! EDF!! EDF!!!';
     }
 }

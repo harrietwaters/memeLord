@@ -16,7 +16,7 @@ export class ButtBotService implements TriggeredEventService {
     @TriggeredEvent()
     @Odds(1, 100)
     @ReplyWithReturn()
-    public async response(cleanContent: string, message: DiscordMessage) {
+    public async response(cleanContent: string, message: DiscordMessage): Promise<string> {
         const nouns: string[] = await this.wordSmith.getNouns(message.cleanContent);
         if (nouns.length === 0) return;
         const buttNoun: string = nouns[Math.floor(Math.random() * nouns.length)];

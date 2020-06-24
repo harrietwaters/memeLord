@@ -61,11 +61,19 @@ export class DiscordClient implements OnModuleInit {
 
     @IgnoreMemeLord()
     private async handleMessages(message: Discord.Message): Promise<void> {
-        for await (const exec of getExec(message, this.commands)) {
-            if (exec) return exec(message);
-        }
-        for await (const exec of getExec(message, this.triggeredEvents)) {
-            if (exec) return exec(message);
+        try {
+            for await (const exec of getExec(message, this.commands)) {
+                if (exec) {
+                    await exec(message);
+                }
+            }
+            for await (const exec of getExec(message, this.triggeredEvents)) {
+                if (exec) {
+                    await exec(message);
+                }
+            }
+        } catch (err) {
+            this.logger.error(err);
         }
     }
 }
