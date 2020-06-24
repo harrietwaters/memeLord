@@ -1,16 +1,19 @@
 import * as Canvas from 'canvas';
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { DiscordClient, DiscordMessage } from 'src/discord/discord-client';
 import { Command, ReplyWithReturn } from 'src/common/decorators';
 import { ComplexResponse } from 'src/common/types';
 
 @Injectable()
-export class TheGangService {
+export class TheGangService implements OnModuleInit {
     private readonly client: DiscordClient;
     private readonly maxTextWidth: number = 22;
     constructor(client: DiscordClient) {
         this.client = client;
         this.client.addCommandEvent(this.response.bind(this));
+    }
+
+    public onModuleInit() {
         Canvas.registerFont('./fonts/textile-regular/Textile Regular.ttf', {
             family: 'Textile Regular'
         });
