@@ -21,6 +21,7 @@ export class StudyBladeService implements TriggeredEventService {
     @ReplyWithReturn()
     public async response(cleanContent: string, message: DiscordMessage): Promise<ComplexResponse> {
         const nouns = shuffle(await this.wordsmith.getNouns(cleanContent.toLowerCase()));
+        if (nouns.length < 3) return;
         const canvas = Canvas.createCanvas(680, 510);
         const ctx = canvas.getContext('2d');
 
