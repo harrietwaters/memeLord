@@ -19,7 +19,7 @@ steps:
   waitFor:
     - 'Build'
   args: ['push', 'gcr.io/$PROJECT_ID/memelord2']
-- name: gcr.io/cloud-builders/gcloud
-  waitFor:
-    - 'Push latest'
-  args: [ compute, instance-groups, managed, rolling-action, restart, memelord-group, --zone=us-central1-a ]
+ #- name: gcr.io/cloud-builders/gcloud
+ #waitFor:
+ #- 'Push latest'
+ #args: [ compute, instance-groups, managed, rolling-action, restart, memelord-group, --zone=us-central1-a ]
