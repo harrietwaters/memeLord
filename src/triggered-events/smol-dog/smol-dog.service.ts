@@ -9,9 +9,14 @@ export class SmolDogService implements TriggeredEventService {
         client.addTriggerEvent(this.response);
     }
 
-    @TriggeredEvent('smol dog')
+    @TriggeredEvent('smol')
     @ReplyWithReturn()
-    public response(): string {
-        return 'SMOL DOG';
+    public response(cleanContent: string): string {
+        const words = cleanContent.split(/\s+/);
+        const smolThing = words.indexOf('smol') + 1;
+
+        if (!smolThing) return;
+
+        return `SMOL ${words[smolThing].toUpperCase()}`;
     }
 }
