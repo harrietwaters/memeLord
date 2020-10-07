@@ -25,7 +25,10 @@ export function ReplyWithReturn() {
                         let reply: string = '';
                         let attachment: Discord.MessageAttachment | null = null;
                         if (result.attachment) {
-                            attachment = new Discord.MessageAttachment(result.attachment);
+                            attachment = new Discord.MessageAttachment(
+                                result.attachment,
+                                `file.${result.fileType || 'jpeg'}`
+                            );
                         }
                         if (result.reply) {
                             reply = result.reply;

@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { DiscordClient, DiscordMessage } from '../../discord/discord-client';
 import { TriggeredEvent, ReplyWithReturn } from '../../common/decorators';
-import { TriggeredEventService } from '../../common/types';
+import { TriggeredEventService, ComplexResponse } from '../../common/types';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
@@ -19,11 +19,12 @@ export class CoolAbedService implements TriggeredEventService {
         return coolCount.length > 2;
     })
     @ReplyWithReturn()
-    public response(cleanContent: string, message: DiscordMessage) {
+    public response(cleanContent: string, message: DiscordMessage): ComplexResponse {
         const coolAbedGif = fs.readFileSync('images/coolAbed.gif');
         return {
             reply: `<@${message.author.id}>`,
-            attachment: coolAbedGif
+            attachment: coolAbedGif,
+            fileType: 'gif'
         };
     }
 }

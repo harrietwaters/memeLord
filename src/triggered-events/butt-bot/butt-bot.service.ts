@@ -14,7 +14,7 @@ export class ButtBotService implements TriggeredEventService {
     }
 
     @TriggeredEvent()
-    @Odds(1, 100)
+    @Odds(1, 50)
     @ReplyWithReturn()
     public async response(cleanContent: string, message: DiscordMessage): Promise<string> {
         const nouns: string[] = await this.wordSmith.getNouns(message.cleanContent);

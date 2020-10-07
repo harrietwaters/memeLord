@@ -5,6 +5,7 @@ import { DiscordMessage } from '../../discord/discord-client';
 export interface ComplexResponse {
     reply?: string | null | undefined;
     attachment?: Discord.BufferResolvable;
+    fileType?: string;
 }
 
 export type HandlerResponse =
