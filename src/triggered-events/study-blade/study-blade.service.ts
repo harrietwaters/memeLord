@@ -17,7 +17,7 @@ export class StudyBladeService implements TriggeredEventService {
     }
 
     @TriggeredEvent(msg => msg.length > 20)
-    @Odds(1, 100)
+    @Odds(1, 50)
     @ReplyWithReturn()
     public async response(cleanContent: string, message: DiscordMessage): Promise<ComplexResponse> {
         const nouns = shuffle(await this.wordsmith.getNouns(cleanContent.toLowerCase()));

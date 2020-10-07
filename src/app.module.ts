@@ -25,7 +25,7 @@ import { LoggerModule } from 'nestjs-pino';
         TerminusModule
     ],
     controllers: [AppController, HealthController],
-    providers: [AppService],
+    providers: [AppService, TriggeredEventsModule],
     exports: []
 })
 export class AppModule {}

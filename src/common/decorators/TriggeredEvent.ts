@@ -1,6 +1,6 @@
 import { DiscordMessage } from '../../discord/discord-client';
 
-type TesterFunction = (msg: string) => boolean | Promise<boolean>;
+type TesterFunction = (msg: string, fullMsg: DiscordMessage) => boolean | Promise<boolean>;
 type TesterString = string;
 type TesterStrings = Array<string>;
 
@@ -19,10 +19,10 @@ export function TriggeredEvent(test?: Tester) {
 
                 switch (typeof test) {
                     case 'string':
-                        passes = lowerMsg.includes(test.toLowerCase());
+                        passes = lowerMsg.split(/\s/).includes(test.toLowerCase());
                         break;
                     case 'function':
-                        passes = await test(message.cleanContent);
+                        passes = await test(message.cleanContent, args[0]);
                         break;
                     case 'object':
                         if (Array.isArray(test)) {

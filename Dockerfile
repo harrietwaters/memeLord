@@ -1,13 +1,14 @@
 FROM node:12 AS builder
 WORKDIR /app
-COPY ./package.json ./
-RUN npm install --silent
-COPY . .
+COPY ./package.json ./package-lock.json ./
+RUN npm ci --silent
+COPY ./src ./src
+COPY ./tsconfig.json ./tsconfig.build.json ./tsconfig.prod.json ./
 RUN npm run build
 
 FROM node:12
 WORKDIR /app
 COPY --from=builder /app ./
-RUN npm install --prod --silent
+RUN npm ci --production --silent
 EXPOSE 3000
 CMD ["npm", "run", "start:prod"]
