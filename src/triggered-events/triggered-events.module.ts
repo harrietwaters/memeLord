@@ -17,6 +17,7 @@ import { UtilitiesModule } from '../utilities/utilities.module';
 import { MemeCrimeService } from './meme-crime/meme-crime.service';
 import { SaveShitPostService } from './save-shit-post/save-shit-post.service';
 import { MemeScoreService } from './meme-score/meme-score.service';
+import { WhatIfWeKissed } from './what-if-we-kissed/what-if-we-kissed.service';
 
 @Module({
     providers: [
@@ -35,7 +36,8 @@ import { MemeScoreService } from './meme-score/meme-score.service';
         StudyBladeService,
         MemeCrimeService,
         SaveShitPostService,
-        MemeScoreService
+        MemeScoreService,
+        WhatIfWeKissed
     ],
     imports: [DiscordModule, UtilitiesModule]
 })
