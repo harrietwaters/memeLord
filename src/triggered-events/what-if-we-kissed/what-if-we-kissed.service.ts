@@ -1,7 +1,8 @@
-import { DiscordMessage, DiscordClient } from '../../discord/discord-client';
-import { Odds, TriggeredEvent, ReplyWithReturn } from '../../common/decorators';
-import { TriggeredEventService } from '../../common/types';
 import { Injectable } from '@nestjs/common';
+import * as _ from 'lodash';
+import { Odds, ReplyWithReturn, TriggeredEvent } from '../../common/decorators';
+import { TriggeredEventService } from '../../common/types';
+import { DiscordClient, DiscordMessage } from '../../discord/discord-client';
 import { WordSmith } from '../../utilities/word-smith';
 
 @Injectable()
@@ -21,7 +22,8 @@ export class WhatIfWeKissed implements TriggeredEventService {
         if (locations.length === 0) return;
         const kissingLocation: string = locations[Math.floor(Math.random() * locations.length)].toLowerCase();
         const preposition = this.wordSmith.getPreposition();
-        const kissingMessage: string = `😳 What if we kissed ${preposition} ${kissingLocation} 🙈`;
+        const article = _.random(1, false) > 0 ? ' the ' : ' ';
+        const kissingMessage: string = `\n😳 What if we kissed ${preposition}${article}${kissingLocation} 🙈`;
         return `<@${message.author.id}> ${kissingMessage}`;
     }
 }
