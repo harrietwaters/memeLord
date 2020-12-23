@@ -1,25 +1,19 @@
-import * as fs from 'fs';
-import * as _ from 'lodash';
+import { ContainsText, DiscordContext, DiscordEvent, Generic, Odds } from '@harold-waters/discord-nestjs-transport';
 import { Body, Controller, UseGuards } from '@nestjs/common';
 import { Ctx } from '@nestjs/microservices';
-import { ContainsText, DiscordEvent, DiscordContext, Generic, Odds } from '@harold-waters/discord-nestjs-transport';
 import * as Canvas from 'canvas';
-import { WordSmith } from '../utilities/word-smith';
-import { NounCount } from '../guards/noun-count.guard';
+import * as fs from 'fs';
+import * as _ from 'lodash';
 import { HasLocationWord } from '../guards/has-location-word.guard';
+import { NounCount } from '../guards/noun-count.guard';
+import { WordSmith } from '../utilities/word-smith';
 
 @Controller()
-export class TriggeredEventsController {
+export class MessageResponseController {
     private readonly wordSmith: WordSmith;
 
     constructor(wordSmith: WordSmith) {
         this.wordSmith = wordSmith;
-    }
-
-    @DiscordEvent('message')
-    @UseGuards(ContainsText(/^!ping/))
-    public ping() {
-        return 'pong';
     }
 
     @DiscordEvent('message')
@@ -102,7 +96,7 @@ export class TriggeredEventsController {
     @DiscordEvent('message')
     @UseGuards(
         Odds(1, 50),
-        Generic(content => !content.startsWith('http') && content.length > 1 && content.length < 32)
+        Generic(content => content && !content.startsWith('http') && content.length > 1 && content.length < 32)
     )
     public async spongebob(@Body() content: string, @Ctx() ctx: DiscordContext) {
         const message = ctx.getArgByIndex(0);

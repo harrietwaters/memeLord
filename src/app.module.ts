@@ -4,7 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TriggeredEventsModule } from './triggered-events/triggered-events.module';
+import { TriggeredEventsModule } from './text-channel-controllers/triggered-events.module';
 import { UtilitiesModule } from './utilities/utilities.module';
 import { HealthController } from './health/health.controller';
 import { LoggerModule } from 'nestjs-pino';
