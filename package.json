@@ -23,6 +23,7 @@
     "typeorm:migrate": "npm run typeorm migration:run --verbose"
   },
   "dependencies": {
+    "@harold-waters/discord-nestjs-transport": "^0.2.1",
     "@nestjs/common": "^7.0.0",
     "@nestjs/config": "^0.5.0",
     "@nestjs/core": "^7.0.0",
@@ -32,7 +33,7 @@
     "@types/lodash": "^4.14.154",
     "bufferutil": "^4.0.1",
     "canvas": "^2.6.1",
-    "discord.js": "^12.2.0",
+    "discord.js": "^12.4.0",
     "erlpack": "github:discordapp/erlpack",
     "lodash": "^4.17.15",
     "module": "^1.2.5",
@@ -56,11 +57,12 @@
     "@types/supertest": "^2.0.8",
     "@typescript-eslint/eslint-plugin": "^2.23.0",
     "@typescript-eslint/parser": "^2.23.0",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.20.1",
-    "jest": "^25.1.0",
     "husky": "^4.2.5",
+    "jest": "^25.1.0",
     "prettier": "^1.19.1",
     "supertest": "^4.0.2",
     "ts-jest": "25.2.1",
@@ -86,6 +88,11 @@
   "husky": {
     "hooks": {
       "pre-commit": "sh ./scripts/pre-commit.sh"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
   }
 }

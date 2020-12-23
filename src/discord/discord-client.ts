@@ -1,6 +1,6 @@
-import * as Discord from 'discord.js';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import * as Discord from 'discord.js';
 import { Logger } from 'nestjs-pino';
 import { IgnoreMemeLord } from 'src/common/decorators';
 
@@ -14,7 +14,7 @@ async function* getExec(message: DiscordMessage, commands: Array<any>) {
 }
 
 @Injectable()
-export class DiscordClient implements OnModuleInit {
+export class DiscordClient {
     private readonly client: Discord.Client;
     private readonly configService: ConfigService;
     private readonly logger: Logger;
@@ -27,11 +27,6 @@ export class DiscordClient implements OnModuleInit {
         this.client.on('message', this.handleMessages.bind(this));
         this.configService = configService;
         this.logger = logger;
-    }
-
-    public async onModuleInit() {
-        await this.login();
-        this.listenForErrors();
     }
 
     private login(): Promise<string> {
