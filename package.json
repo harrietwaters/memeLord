@@ -23,7 +23,7 @@
     "typeorm:migrate": "npm run typeorm migration:run --verbose"
   },
   "dependencies": {
-    "@harold-waters/discord-nestjs-transport": "^0.2.1",
+    "@harold-waters/discord-nestjs-transport": "^0.4.0",
     "@nestjs/common": "^7.0.0",
     "@nestjs/config": "^0.5.0",
     "@nestjs/core": "^7.0.0",
