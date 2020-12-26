@@ -35,7 +35,7 @@
     "canvas": "^2.6.1",
     "discord.js": "^12.4.0",
     "erlpack": "github:discordapp/erlpack",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "module": "^1.2.5",
     "nestjs-pino": "^1.2.0",
     "pg": "^8.2.1",
