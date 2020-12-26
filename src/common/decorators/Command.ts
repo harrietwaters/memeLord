@@ -1,5 +1,5 @@
 import { zip } from 'lodash';
-import { DiscordMessage } from '../../discord/discord-client';
+import * as Discord from 'discord.js';
 import { CommandArgs } from '../types';
 
 function printHelp(commandName: string, commandArgs: CommandArgs) {
@@ -13,7 +13,7 @@ export function Command(commandName: string, commandArgs?: CommandArgs) {
 
         if (typeof original === 'function') {
             descriptor.value = async function(...args) {
-                const message: DiscordMessage = args[0];
+                const message: Discord.Message = args[0];
 
                 if (!message.cleanContent.toLowerCase().startsWith(commandName.toLowerCase())) return;
 

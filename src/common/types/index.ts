@@ -1,5 +1,4 @@
 import * as Discord from 'discord.js';
-import { DiscordMessage } from '../../discord/discord-client';
 
 // Triggered Events
 export interface ComplexResponse {
@@ -18,7 +17,7 @@ export type HandlerResponse =
 
 export type CompletedHandlerResponse = Exclude<HandlerResponse, Promise<any>>;
 
-export type TriggeredEventHandler = (cleanMessage: string, message?: DiscordMessage) => HandlerResponse;
+export type TriggeredEventHandler = (cleanMessage: string, message?: Discord.Message) => HandlerResponse;
 
 export interface TriggeredEventService {
     response: TriggeredEventHandler;
@@ -34,7 +33,7 @@ export type CommandArgs = Array<CommandArg>;
 
 export type CompletedCommandResponse = Exclude<HandlerResponse, Promise<any>>;
 
-export type CommandHandler = (args: Array<number | string>, message?: DiscordMessage) => HandlerResponse;
+export type CommandHandler = (args: Array<number | string>, message?: Discord.Message) => HandlerResponse;
 
 export interface CommandService {
     response: CommandHandler;

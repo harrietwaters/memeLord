@@ -1,25 +1,19 @@
-import * as Canvas from 'canvas';
 import { Injectable } from '@nestjs/common';
-import { DiscordClient, DiscordMessage } from 'src/discord/discord-client';
+import * as Canvas from 'canvas';
+import * as Discord from 'discord.js';
+import { Logger } from 'nestjs-pino';
 import { Command, ReplyWithReturn } from 'src/common/decorators';
 import { ComplexResponse } from 'src/common/types';
-import { Logger } from 'nestjs-pino';
 
 @Injectable()
 export class TheGangService {
-    private readonly client: DiscordClient;
     private readonly logger: Logger;
 
     private readonly maxTextWidth: number = 22;
-    constructor(client: DiscordClient, logger: Logger) {
-        this.client = client;
-        this.client.addCommandEvent(this.response.bind(this));
-        this.logger = logger;
-    }
 
     @Command('!theGang', [{ name: 'text', type: 'string' }])
     @ReplyWithReturn()
-    public async response([text]: [string], message: DiscordMessage): Promise<ComplexResponse> {
+    public async response([text]: [string], message: Discord.Message): Promise<ComplexResponse> {
         const theGang: string = 'the gang ';
         if (text.toLowerCase().startsWith(theGang)) {
             text = text.slice(theGang.length);

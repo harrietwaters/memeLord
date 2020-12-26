@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import * as Discord from 'discord.js';
 import { Command, ReplyWithReturn } from '../../common/decorators';
-import { DiscordClient, DiscordMessage } from '../../discord/discord-client';
 import { CommandService } from '../../common/types';
 
 function getRoller(die, faces) {
@@ -13,18 +13,12 @@ function getRoller(die, faces) {
 
 @Injectable()
 export class RollDiceService implements CommandService {
-    private readonly client: DiscordClient;
-    constructor(client: DiscordClient) {
-        this.client = client;
-        this.client.addCommandEvent(this.response);
-    }
-
     @Command('!rollDice', [
         { name: 'Number of die', type: 'number' },
         { name: 'Number of faces', type: 'string' }
     ])
     @ReplyWithReturn()
-    public response([dieCount, dieFaces]: [number, number | string], message: DiscordMessage): string {
+    public response([dieCount, dieFaces]: [number, number | string], message: Discord.Message): string {
         let dieFacesInt: number;
         if (typeof dieFaces === 'string') {
             dieFacesInt = parseInt(dieFaces.slice(1));

@@ -1,19 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { DiscordClient, DiscordMessage } from '../../discord/discord-client';
-import { Command, ReplyWithReturn } from '../../common/decorators';
+import * as Discord from 'discord.js';
 import { getRepository } from 'typeorm';
-import { MemeHouse } from '../../models/meme-house.entity';
+import { Command, ReplyWithReturn } from '../../common/decorators';
 import { CommandService } from '../../common/types';
+import { MemeHouse } from '../../models/meme-house.entity';
 
 @Injectable()
 export class ListHousesService implements CommandService {
-    constructor(client: DiscordClient) {
-        client.addTriggerEvent(this.response);
-    }
-
     @Command('!listHouses')
     @ReplyWithReturn()
-    public async response(args: never, message: DiscordMessage): Promise<string> {
+    public async response(args: never, message: Discord.Message): Promise<string> {
         const memeHouseRepository = getRepository(MemeHouse);
 
         const houses = await memeHouseRepository.find();

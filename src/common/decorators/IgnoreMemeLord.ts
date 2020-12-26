@@ -1,4 +1,4 @@
-import { DiscordMessage } from '../../discord/discord-client';
+import * as Discord from 'discord.js';
 
 export function IgnoreMemeLord() {
     return function decorator(target, propertyKey: string, descriptor: PropertyDescriptor) {
@@ -6,7 +6,7 @@ export function IgnoreMemeLord() {
 
         if (typeof original === 'function') {
             descriptor.value = async function(...args) {
-                const message: DiscordMessage = args[0];
+                const message: Discord.Message = args[0];
                 if (message.client.users.cache.get(message.author.id)?.username !== 'MemeLord') {
                     descriptor.value = original;
                     await original.apply(this, args);

@@ -1,21 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import * as Canvas from 'canvas';
-
-import { DiscordClient, DiscordMessage } from '../../discord/discord-client';
+import * as Discord from 'discord.js';
+import { getRepository } from 'typeorm';
 import { Command, ReplyWithReturn } from '../../common/decorators';
+import { ComplexResponse } from '../../common/types';
 import { MemeHouse } from '../../models/meme-house.entity';
 import { SortingHatUser } from '../../models/sorting-hat-user.entity';
-import { getRepository } from 'typeorm';
-import { ComplexResponse } from '../../common/types';
 
 @Injectable()
 export class PutOnHatService {
-    constructor(client: DiscordClient) {
-        client.addTriggerEvent(this.putOnHat);
-    }
     @Command('!putOnHat')
     @ReplyWithReturn()
-    public async putOnHat(message: DiscordMessage): Promise<void | string | ComplexResponse> {
+    public async putOnHat(message: Discord.Message): Promise<void | string | ComplexResponse> {
         const memeHouseRepository = getRepository(MemeHouse);
         const sortingHatUserRepository = getRepository(SortingHatUser);
 

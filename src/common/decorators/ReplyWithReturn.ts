@@ -1,5 +1,4 @@
 import * as Discord from 'discord.js';
-import { DiscordMessage } from '../../discord/discord-client';
 import { CompletedHandlerResponse } from '../types';
 
 export function ReplyWithReturn() {
@@ -8,7 +7,7 @@ export function ReplyWithReturn() {
 
         if (typeof original === 'function') {
             descriptor.value = async function(...args) {
-                let message: DiscordMessage;
+                let message: Discord.Message;
                 if (Array.isArray(args[0])) {
                     message = args[1];
                 } else if (typeof args[0] === 'string') {

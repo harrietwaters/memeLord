@@ -1,6 +1,6 @@
-import { DiscordMessage } from '../../discord/discord-client';
+import * as Discord from 'discord.js';
 
-type TesterFunction = (msg: string, fullMsg: DiscordMessage) => boolean | Promise<boolean>;
+type TesterFunction = (msg: string, fullMsg: Discord.Message) => boolean | Promise<boolean>;
 type TesterString = string;
 type TesterStrings = Array<string>;
 
@@ -12,7 +12,7 @@ export function TriggeredEvent(test?: Tester) {
 
         if (typeof original === 'function') {
             descriptor.value = async function(...args) {
-                const message: DiscordMessage = args[0];
+                const message: Discord.Message = args[0];
                 let passes = false;
 
                 const lowerMsg = message.cleanContent.toLocaleLowerCase();

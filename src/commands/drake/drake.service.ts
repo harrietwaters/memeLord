@@ -1,17 +1,12 @@
-import * as Canvas from 'canvas';
 import { Injectable } from '@nestjs/common';
-import { DiscordClient, DiscordMessage } from 'src/discord/discord-client';
+import * as Canvas from 'canvas';
+import * as Discord from 'discord.js';
 import { Command, ReplyWithReturn } from 'src/common/decorators';
 import { ComplexResponse } from 'src/common/types';
 
 @Injectable()
 export class DrakeService {
-    private readonly client: DiscordClient;
     private readonly maxTextWidth: number = 15;
-    constructor(client: DiscordClient) {
-        this.client = client;
-        this.client.addCommandEvent(this.response.bind(this));
-    }
 
     @Command('!drake', [
         { name: 'Top Panel', type: 'string' },
@@ -20,7 +15,7 @@ export class DrakeService {
     @ReplyWithReturn()
     public async response(
         [topPanel, bottomPanel]: [string, string],
-        message: DiscordMessage
+        message: Discord.Message
     ): Promise<ComplexResponse> {
         const canvas = Canvas.createCanvas(539, 539);
         const ctx = canvas.getContext('2d');
