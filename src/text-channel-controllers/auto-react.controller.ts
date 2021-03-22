@@ -42,4 +42,11 @@ export class AutoReactController {
         const gundamEmoji = message.guild.emojis.cache.find(e => e.name === 'gundam');
         await message.react(gundamEmoji);
     }
+
+    @DiscordEvent('message')
+    @UseGuards(ContainsText('fauci|vaccine'))
+    public async warrenSnake(@Ctx() ctx: DiscordContext) {
+        const message = ctx.getArgByIndex(0);
+        await message.react('💉');
+    }
 }
