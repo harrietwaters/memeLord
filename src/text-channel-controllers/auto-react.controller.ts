@@ -44,9 +44,11 @@ export class AutoReactController {
     }
 
     @DiscordEvent('message')
-    @UseGuards(ContainsText('fauci|vaccine'))
-    public async warrenSnake(@Ctx() ctx: DiscordContext) {
+    @UseGuards(ContainsText('vaccine'))
+    public async vaccineSheep(@Ctx() ctx: DiscordContext) {
         const message = ctx.getArgByIndex(0);
+        await message.react('💉');
+        await message.react('🐑');
         await message.react('💉');
     }
 }
